@@ -1,0 +1,6 @@
+[submodule "back_rails_users_api"]
+	path = back_rails_users_api
+	url = https://github.com/Gambizzz/back_rails_users_api.git
+[submodule "front_react_boilerplate"]
+	path = front_react_boilerplate
+	url = https://github.com/Gambizzz/front_react_boilerplate.git
