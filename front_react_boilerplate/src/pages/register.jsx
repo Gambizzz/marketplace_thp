@@ -27,6 +27,7 @@ function SignUp() {
           }
         }
       }).json();
+      console.log(response)
 
       const { user, token } = response;
       setUser({
