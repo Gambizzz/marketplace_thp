@@ -6,14 +6,17 @@ class Users::SessionsController < Devise::SessionsController
   def respond_with(_resource, _opts = {})
     render json: {
       message: 'You are logged in.',
-      user: current_user
+      user: current_user,
+      token: request.env['warden-jwt_auth.token'] # Retourne le token
     }, status: :ok
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user
-
-    log_out_failure
+    if current_user
+      log_out_success
+    else
+      log_out_failure
+    end
   end
 
   def log_out_success

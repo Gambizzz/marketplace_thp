@@ -11,6 +11,7 @@ import Nav from './components/navbar';
 import ForgotPassword from './components/forgotPassword';
 import ResetPassword from './components/resetPassword';
 import './App.scss';
+import UserAnnonce from './pages/userAnnonce';
 
 function App() {
   const [user, setUser] = useAtom(userAtom);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/logout" element={<LogoutLink />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/mes-annonces" element={<UserAnnonce />} />
       </Routes>
     </BrowserRouter>
   );
