@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 
-const UserAnnonce = () => {
+const UserCreatAnnonce = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
@@ -13,7 +13,7 @@ const UserAnnonce = () => {
     const token = Cookies.get('token');  // Récupère le token depuis les cookies
 
     try {
-      const response = await ky.post('http://localhost:3000/mes-annonces', {
+      const response = await ky.post('http://localhost:3000/cree-annonces', {
         json: {
           annonce: {  
             title,
@@ -54,4 +54,4 @@ const UserAnnonce = () => {
   );
 };
 
-export default UserAnnonce;
+export default UserCreatAnnonce;
