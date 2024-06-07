@@ -11,7 +11,9 @@ import Nav from './components/navbar';
 import ForgotPassword from './components/forgotPassword';
 import ResetPassword from './components/resetPassword';
 import './App.scss';
-import UserAnnonce from './pages/userAnnonce';
+import UserCreatAnnonce from './pages/CreateAnnonce';
+import UserAnnonce from './pages/UserAnnonce';
+import EditeAnnonce from './pages/EditAnnonce';
 
 function App() {
   const [user, setUser] = useAtom(userAtom);
@@ -41,7 +43,9 @@ function App() {
         <Route path="/logout" element={<LogoutLink />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/cree-annonces" element={<UserCreatAnnonce />} />
         <Route path="/mes-annonces" element={<UserAnnonce />} />
+        <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
       </Routes>
     </BrowserRouter>
   );

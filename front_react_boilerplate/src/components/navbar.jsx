@@ -12,12 +12,14 @@ const Nav = () => {
       <ul>
         {user.isLoggedIn ? (
           <>
+            <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/logout"> Se déconnecter </Link></li>
-            <li> <Link to="/mes-annonces"> Mes annonces </Link>  </li>
-            {/* crée mes annonces */}
+            <li> <Link to="/cree-annonces"> crée une annonces </Link>  </li>
+            <li> <Link to="/mes-annonces">Mes annonces </Link> </li>
           </>
         ) : (
           <>
+            <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/signup"> S'inscrire </Link></li>
             <li> <Link to="/login"> Se connecter </Link></li>
           </>

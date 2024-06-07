@@ -1,5 +1,5 @@
 class AnnoncesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_annonce, only: %i[show update destroy]
   before_action :authorize_user!, only: %i[update destroy]
 
@@ -26,7 +26,6 @@ class AnnoncesController < ApplicationController
     @annonce = Annonce.new(annonce_params)
     @annonce.user = current_user
 
-
     if @annonce.save
       render json: @annonce, status: :created
     else
@@ -44,36 +43,29 @@ class AnnoncesController < ApplicationController
     end
   end
 
-  def edit
-    @annonce = Annonce.find(params[:id])
-  end
-
   # DELETE /annonces/1
   def destroy
     @annonce = Annonce.find(params[:id])
     @annonce.destroy
   end
 
- # GET /mes-annonces
+  # GET /mes-annonces
   def mes_annonces
     @annonces = current_user.annonces
     render json: @annonces
   end
 
-
   private
 
-    def set_annonce
-      @annonce = Annonce.find(params[:id])
-    end
+  def set_annonce
+    @annonce = Annonce.find(params[:id])
+  end
 
+  def annonce_params
+    params.require(:annonce).permit(:title, :price, :description)
+  end
 
-    def annonce_params
-      params.require(:annonce).permit(:title, :price, :description)
-    end
-
-
-    def authorize_user!
-      redirect_to annonces_path, alert: 'Not authorized' unless @annonce.user == current_user
-    end
+  def authorize_user!
+    redirect_to annonces_path, alert: 'Not authorized' unless @annonce.user == current_user
+  end
 end
