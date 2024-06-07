@@ -36,6 +36,7 @@ class AnnoncesController < ApplicationController
 
   # PATCH/PUT /annonces/1
   def update
+    @annonce = Annonce.find(params[:id])
     if @annonce.update(annonce_params)
       render json: @annonce
     else
@@ -43,10 +44,22 @@ class AnnoncesController < ApplicationController
     end
   end
 
+  def edit
+    @annonce = Annonce.find(params[:id])
+  end
+
   # DELETE /annonces/1
   def destroy
+    @annonce = Annonce.find(params[:id])
     @annonce.destroy
   end
+
+ # GET /mes-annonces
+  def mes_annonces
+    @annonces = current_user.annonces
+    render json: @annonces
+  end
+
 
   private
 
