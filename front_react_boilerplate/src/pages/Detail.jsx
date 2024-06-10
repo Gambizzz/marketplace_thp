@@ -20,7 +20,7 @@ const Detail = () => {
   };
 
   if (!annonce) {
-    return <p>Chargement en cours...</p>;
+    return <p>Annonce non trouvée</p>;
   }
 
   return (

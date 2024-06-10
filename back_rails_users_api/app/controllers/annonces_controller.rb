@@ -65,7 +65,7 @@ end
   end
 
   def annonce_params
-    params.require(:annonce).permit(:title, :superficie, :price, :description)
+    params.require(:annonce).permit(:title, :price, :description)
   end
 
   def authorize_user!

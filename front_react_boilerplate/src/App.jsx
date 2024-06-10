@@ -52,7 +52,8 @@ function App() {
         <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
         <Route path="/Hero" element={<Hero />} />
         <Route path="/Card" element={<Card />} />
-        <Route path="/detail/:id" component={Detail} />
+        <Route path="/detail/:id" element={<Detail />} />
+
       </Routes>
     </BrowserRouter>
   );
