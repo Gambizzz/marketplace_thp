@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 
@@ -7,7 +7,7 @@ const UserCreatAnnonce = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [superficie, setSuperficie] = useState('');
-  const [nombre_de_pieces, setnombre_de_pieces] = useState('');
+  const [nombre_de_pieces, setNombre_de_pieces] = useState('');
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -69,7 +69,7 @@ const UserCreatAnnonce = () => {
       </div>
       <div>
         <label> Nombre de pièces : </label>
-        <input type="number" value={nombre_de_pieces} onChange={(e) => setnombre_de_pieces(e.target.value)} />
+        <input type="number" value={nombre_de_pieces} onChange={(e) => setNombre_de_pieces(e.target.value)} />
       </div>
       <div className='checkbox'>
         <label> Terrasse/Jardin : </label>
