@@ -16,18 +16,22 @@ const Home = () => {
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);
     }
-  };
+  };  
 
   return (
     <div>
       <h1>PAGE D'ACCUEIL</h1>
-      <h2>Annonces :</h2>
+      <h2>Annonces :</h2> 
       <ul>
         {annonces.map((annonce) => (
           <li key={annonce.id}>
+            <img src={annonce.image_url} alt={annonce.title} />
             <h3>{annonce.title}</h3>
             <p>Description : {annonce.description}</p>
             <p>Prix : {annonce.price}</p>
+            <p>Superficie: {annonce.superficie}</p>
+            <p>Nombre de pièce: {annonce.nombre_de_pièces}</p>
+            <p>Terasse: {annonce.terasse_jardin ? "Oui" : "Non"}</p>
           </li>
         ))}
       </ul>
