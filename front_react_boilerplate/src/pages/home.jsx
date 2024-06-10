@@ -19,23 +19,20 @@ const Home = () => {
   };  
 
   return (
-    <div>
-      <h1>PAGE D'ACCUEIL</h1>
-      <h2>Annonces :</h2> 
-      <ul>
-        {annonces.map((annonce) => (
-          <li key={annonce.id}>
+<div className='index-annonces'>
+    <h2> TOUTES NOS ANNONCES </h2> 
+    {annonces.map((annonce) => (
+        <div key={annonce.id}>
             <img src={annonce.image_url} alt={annonce.title} />
             <h3>{annonce.title}</h3>
-            <p>Description : {annonce.description}</p>
-            <p>Prix : {annonce.price}</p>
-            <p>Superficie: {annonce.superficie}</p>
-            <p>Nombre de pièce: {annonce.nombre_de_pièces}</p>
-            <p>Terasse: {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+            <p> Description : {annonce.description}</p>
+            <p> Prix : {annonce.price}</p>
+            <p> Superficie : {annonce.superficie}</p>
+            <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
+            <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
+        </div>
+    ))}
+</div>
   );
 };
 

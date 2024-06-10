@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_161232) do
     t.integer "price"
     t.text "description"
     t.integer "superficie"
-    t.integer "nombre_de_pièces"
+    t.integer "nombre_de_pieces"
     t.boolean "terasse_jardin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

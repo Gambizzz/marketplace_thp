@@ -7,7 +7,7 @@ const UserCreatAnnonce = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [superficie, setSuperficie] = useState('');
-  const [nombre_de_pièces, setNombre_de_pièces] = useState('');
+  const [nombre_de_pieces, setnombre_de_pieces] = useState('');
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -25,7 +25,7 @@ const UserCreatAnnonce = () => {
             price,
             description,
             superficie,
-            nombre_de_pièces,
+            nombre_de_pieces,
             terasse_jardin,
             image
           }
@@ -45,43 +45,44 @@ const UserCreatAnnonce = () => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='create-form'>
+      <h1> CRÉER UNE ANNONCE </h1>
       <div>
-        <label>Image:</label>
+        <label> Image : </label>
         <input type="file" onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
       </div>
       <div>
-        <label>Title:</label>
+        <label> Titre : </label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
       <div>
-        <label>Price:</label>
+        <label> Prix : </label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
       </div>
       <div>
-        <label>Description:</label>
+        <label> Description : </label>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
       <div>
-        <label>Superficie:</label>
+        <label> Superficie : </label>
         <input type="number" value={superficie} onChange={(e) => setSuperficie(e.target.value)} />
       </div>
       <div>
-        <label>Nombre de pièces:</label>
-        <input type="number" value={nombre_de_pièces} onChange={(e) => setNombre_de_pièces(e.target.value)} />
+        <label> Nombre de pièces : </label>
+        <input type="number" value={nombre_de_pieces} onChange={(e) => setnombre_de_pieces(e.target.value)} />
       </div>
-      <div>
-        <label>Terasse/Jardin:</label>
+      <div className='checkbox'>
+        <label> Terrasse/Jardin : </label>
         <div>
           <input
             type="radio" id="terasse_jardin_oui" name="terasse_jardin" value={true} checked={terasse_jardin === true} onChange={() => setTerasse_jardin(true)} />
-          <label htmlFor="terasse_jardin_oui">Oui</label>
+          <label htmlFor="terasse_jardin_oui"> Oui </label>
           <input
             type="radio" id="terasse_jardin_non" name="terasse_jardin" value={false} checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-            <label htmlFor="terasse_jardin_non">non</label>
+            <label htmlFor="terasse_jardin_non"> Non </label>
         </div>
       </div>
-      <button type="submit">Create Annonce</button>
+      <button type="submit"> Créer </button>
     </form>
   );
 };
