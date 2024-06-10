@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../atoms';
@@ -14,7 +13,7 @@ const Nav = () => {
           <>
             <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/logout"> Se déconnecter </Link></li>
-            <li> <Link to="/cree-annonces"> crée une annonces </Link>  </li>
+            <li> <Link to="/creer-annonces"> crée une annonces </Link>  </li>
             <li> <Link to="/mes-annonces">Mes annonces </Link> </li>
           </>
         ) : (

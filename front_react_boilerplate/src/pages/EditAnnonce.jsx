@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 import { useParams } from 'react-router-dom';
