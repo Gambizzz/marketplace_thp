@@ -1,0 +1,14 @@
+.hero {
+    width: 100%;
+    text-align: center;
+    padding: 50px 60px;
+    background: #f4f4f4;
+    box-sizing: border-box;
+  }
+  
+  .hero img {
+    width: 100%;
+    height: auto;
+    max-width: 600px; 
+  }
+  

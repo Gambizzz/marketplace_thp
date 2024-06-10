@@ -14,6 +14,9 @@ import './App.scss';
 import UserCreatAnnonce from './pages/CreateAnnonce';
 import UserAnnonce from './pages/UserAnnonce';
 import EditeAnnonce from './pages/EditAnnonce';
+import Hero from './components/Hero';
+import Card from './components/Card';
+
 
 function App() {
   const [user, setUser] = useAtom(userAtom);
@@ -46,10 +49,13 @@ function App() {
         <Route path="/cree-annonces" element={<UserCreatAnnonce />} />
         <Route path="/mes-annonces" element={<UserAnnonce />} />
         <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
+        <Route path="/Hero" element={<Hero />} />
+        <Route path="/Card" element={<Card />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 export default App;
 

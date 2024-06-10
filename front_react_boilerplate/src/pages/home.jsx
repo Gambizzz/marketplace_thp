@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ky from 'ky'; 
+import ky from 'ky';
+import Hero from '../components/Hero';
+import Card from '../components/Card';
+import './Home.css';
 
 const Home = () => {
   const [annonces, setAnnonces] = useState([]);
@@ -12,6 +15,7 @@ const Home = () => {
     try {
       const response = await ky.get('http://localhost:3000/cree-annonces');
       const data = await response.json();
+      console.log(data); // Vérifiez les données reçues
       setAnnonces(data);
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);
@@ -20,19 +24,29 @@ const Home = () => {
 
   return (
     <div>
+      <Hero />
       <h1>PAGE D'ACCUEIL</h1>
       <h2>Annonces :</h2>
-      <ul>
-        {annonces.map((annonce) => (
-          <li key={annonce.id}>
-            <h3>{annonce.title}</h3>
-            <p>Description : {annonce.description}</p>
-            <p>Prix : {annonce.price}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="cards-container">
+        {annonces.length === 0 ? (
+          <p>Aucune annonce trouvée.</p>
+        ) : (
+          annonces.slice(0, 4).map((annonce) => (
+            <Card
+              key={annonce.id}
+              title={annonce.title}
+              description={annonce.description}
+              price={annonce.price}
+              imageUrl={annonce.image_url} 
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };
 
 export default Home;
+
+
+
