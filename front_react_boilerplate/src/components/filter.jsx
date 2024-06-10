@@ -49,10 +49,28 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Meublé:</label>
+        <label>Nombre de pièces Min:</label>
+        <input
+          type="number"
+          name="nbDePiecesMin"
+          value={filters.nbDePiecesMin}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Nombre de pièces Max:</label>
+        <input
+          type="number"
+          name="nbDePiecesMax"
+          value={filters.nbDePiecesMax}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Terrasse:</label>
         <select
-          name="meuble"
-          value={filters.meuble}
+          name="terasse_jardin"
+          value={filters.terasse_jardin}
           onChange={handleChange}
         >
           <option value="">--Choisir--</option>
@@ -71,8 +89,9 @@ Filter.propTypes = {
     priceMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     superficieMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     superficieMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    meuble: PropTypes.string,
-    localisation: PropTypes.string,
+    nbDePiecesMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    nbDePiecesMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    terasse_jardin: PropTypes.string,
   }).isRequired,
   setFilters: PropTypes.func.isRequired,
 };

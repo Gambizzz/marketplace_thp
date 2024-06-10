@@ -9,7 +9,9 @@ const Home = () => {
     priceMax: '',
     superficieMin: '',
     superficieMax: '',
-    meuble: '',
+    nbDePiecesMin: '',
+    nbDePiecesMax: '',
+    terasse_jardin: ''
   });
 
   useEffect(() => {
@@ -19,9 +21,7 @@ const Home = () => {
   const fetchAnnonces = async () => {
     try {
       const response = await ky.get('http://localhost:3000/cree-annonces');
-      console.log('Response:', response); // Debug
       const data = await response.json();
-      console.log('Fetched data:', data); // Debug
       setAnnonces(data);
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);
@@ -31,24 +31,26 @@ const Home = () => {
   const filteredAnnonces = annonces.filter((annonce) => {
     const priceMin = filters.priceMin ? parseFloat(filters.priceMin) : 0;
     const priceMax = filters.priceMax ? parseFloat(filters.priceMax) : Infinity;
-    // const superficieMin = filters.superficieMin ? parseFloat(filters.superficieMin) : 0;
-    // const superficieMax = filters.superficieMax ? parseFloat(filters.superficieMax) : Infinity;
-    // const isMeuble = filters.meuble === '' ? true : (filters.meuble === 'true' ? annonce.meuble : !annonce.meuble);
+    const superficieMin = filters.superficieMin ? parseFloat(filters.superficieMin) : 0;
+    const superficieMax = filters.superficieMax ? parseFloat(filters.superficieMax) : Infinity;
+    const nbDePiecesMin = filters.nbDePiecesMin ? parseFloat(filters.nbDePiecesMin) : 0;
+    const nbDePiecesMax = filters.nbDePiecesMax ? parseFloat(filters.nbDePiecesMax) : Infinity;
+    const isTerrasse = filters.terasse_jardin === '' ? true : (filters.terasse_jardin === 'true' ? annonce.terasse_jardin : !annonce.terasse_jardin);
 
     return (
       annonce.price >= priceMin &&
-      annonce.price <= priceMax
-      // &&
-      // annonce.superficie >= superficieMin &&
-      // annonce.superficie <= superficieMax &&
-      // isMeuble
+      annonce.price <= priceMax &&
+      annonce.superficie >= superficieMin &&
+      annonce.superficie <= superficieMax &&
+      annonce.nombre_de_pieces >= nbDePiecesMin &&
+      annonce.nombre_de_pieces <= nbDePiecesMax &&
+      isTerrasse
     );
   });
   return (
     <div>
       <h1>PAGE D'ACCUEIL</h1>
       <Filter filters={filters} setFilters={setFilters} />
-      <h2>Annonces :</h2>
       <h2>Annonces :</h2> 
       <ul>
       {filteredAnnonces.map((annonce) => (
@@ -58,7 +60,7 @@ const Home = () => {
             <p>Description : {annonce.description}</p>
             <p>Prix : {annonce.price}</p>
             <p>Superficie: {annonce.superficie}</p>
-            <p>Nombre de pièce: {annonce.nombre_de_pièces}</p>
+            <p>Nombre de pièces: {annonce.nombre_de_pieces}</p>
             <p>Terasse: {annonce.terasse_jardin ? "Oui" : "Non"}</p>
           </li>
         ))
