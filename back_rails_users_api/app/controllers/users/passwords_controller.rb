@@ -1,33 +1,32 @@
+# app/controllers/users/passwords_controller.rb
 class Users::PasswordsController < Devise::PasswordsController
   respond_to :json
 
-  def reset
-    user = User.find_by(email: resource_params[:email])
-    if user.present?
-      user.send_reset_password_instructions
-      render json: { message: "Un email de réinitialisation du mot de passe a été envoyé." }, status: :ok
+  def create
+    self.resource = resource_class.send_reset_password_instructions(resource_params)
+    if successfully_sent?(resource)
+      render json: { message: 'Un email de réinitialisation de mot de passe a été envoyé.' }, status: :ok
     else
-      render json: { error: "Adresse email non trouvée." }, status: :unprocessable_entity
+      render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
     end
-  rescue StandardError => e
-    render json: { error: "Erreur lors de l'envoi de l'email de réinitialisation." }, status: :unprocessable_entity
   end
 
-  def check_token
-    user = User.reset_password_by_token(resource_params)
-    if user.errors.empty?
-      render json: { message: "Le token est valide." }, status: :ok
+  def update
+    self.resource = resource_class.reset_password_by_token(resource_params)
+    if resource.errors.empty?
+      render json: { message: 'Le mot de passe a été réinitialisé avec succès.' }, status: :ok
     else
-      render json: { error: "Le lien de réinitialisation du mot de passe est invalide ou a expiré." }, status: :unprocessable_entity
+      render json: { error: resource.errors.full_messages }, status: :unprocessable_entity
     end
-  rescue StandardError => e
-    render json: { error: "Le lien de réinitialisation du mot de passe est invalide ou a expiré." }, status: :unprocessable_entity
   end
 
-  private
+  protected
 
-  def resource_params
-    params.permit(:email, :reset_password_token, :password, :password_confirmation)
+  def after_sending_reset_password_instructions_path_for(resource_name)
+    # Customize the reset password URL with the frontend URL
+    "http://localhost:3000/reset-password/#{resource.send(:set_reset_password_token)}"
   end
 end
+
+
 

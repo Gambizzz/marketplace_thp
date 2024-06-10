@@ -1,3 +1,4 @@
+// ForgotPassword.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ky from 'ky';
@@ -9,7 +10,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await ky.post('/api/password/reset', { json: { email } });
+      await ky.post('/users/password', { json: { email } });
       setMessage('Un email de réinitialisation du mot de passe a été envoyé.');
     } catch (error) {
       setMessage('Erreur lors de l\'envoi de l\'email de réinitialisation.');
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit"> Envoyer l'email de réinitialisation </button>
+        <button type="submit">Envoyer l'email de réinitialisation</button>
       </form>
       <p>{message}</p>
       <p>
@@ -39,3 +40,5 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+
