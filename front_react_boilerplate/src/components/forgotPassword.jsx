@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ky from 'ky';
 
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit"> Envoyer l'email de réinitialisation </button>
+        <button type="submit"> Envoyer l&#39;email de réinitialisation </button>
       </form>
       <p>{message}</p>
       <p>
