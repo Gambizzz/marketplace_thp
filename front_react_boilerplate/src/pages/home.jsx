@@ -33,12 +33,15 @@ const Home = () => {
         ) : (
           annonces.slice(0, 4).map((annonce) => (
             <Card
-              key={annonce.id}
-              title={annonce.title}
-              description={annonce.description}
-              price={annonce.price}
-              imageUrl={annonce.image_url} 
-            />
+            key={annonce.id}
+            id={annonce.id} 
+            title={annonce.title}
+            superficie={annonce.superficie}
+            description={annonce.description}
+            price={annonce.price}
+            imageUrl={annonce.image_url} 
+          />
+          
           ))
         )}
       </div>

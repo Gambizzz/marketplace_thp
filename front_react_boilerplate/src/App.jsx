@@ -16,6 +16,7 @@ import UserAnnonce from './pages/UserAnnonce';
 import EditeAnnonce from './pages/EditAnnonce';
 import Hero from './components/Hero';
 import Card from './components/Card';
+import Detail from './pages/Detail';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
         <Route path="/Hero" element={<Hero />} />
         <Route path="/Card" element={<Card />} />
+        <Route path="/detail/:id" component={Detail} />
       </Routes>
     </BrowserRouter>
   );

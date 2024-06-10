@@ -9,11 +9,14 @@ class AnnoncesController < ApplicationController
     render json: @annonces
   end
 
-  # GET /annonces/1
-  def show
-    @annonce = current_user.annonces.find(params[:id])
-    render json: @annonce
-  end
+ # GET /annonces/1
+def show
+  @annonce = Annonce.find(params[:id])
+  render json: @annonce
+rescue ActiveRecord::RecordNotFound
+  render json: { error: "Annonce not found" }, status: :not_found
+end
+
 
   # GET /annonces/new
   def new
@@ -62,7 +65,7 @@ class AnnoncesController < ApplicationController
   end
 
   def annonce_params
-    params.require(:annonce).permit(:title, :price, :description)
+    params.require(:annonce).permit(:title, :superficie, :price, :description)
   end
 
   def authorize_user!
