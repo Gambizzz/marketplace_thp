@@ -87,7 +87,7 @@ const UserCreatAnnonce = () => {
             <label htmlFor="terasse_jardin_non">non</label>
         </div>
       </div>
-      <button type="submit">Create Annonce</button>
+      <button type="submit">Create Annoncee</button>
     </form>
   );
 };
