@@ -47,7 +47,9 @@ const ForgotPassword = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <button type="submit">Envoyer l'email de réinitialisation</button>
+
       </form>
       <p>{message}</p>
     </div>
