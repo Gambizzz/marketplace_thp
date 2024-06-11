@@ -54,11 +54,11 @@ const UserCreatAnnonce = () => {
       <div>
         <label>Image:</label>
         <input type="file" onChange={handleImage} accept="image/*" />
+        {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
         <label>Title:</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
         <label>Price:</label>
