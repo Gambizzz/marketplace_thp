@@ -54,19 +54,23 @@ const Home = () => {
   return (
     <div className='index-annonces'>
       <Hero />
-        <h1> TOUTES NOS ANNONCES </h1> 
+        <h1> TOUTES NOS ANNONCES </h1>
         <Filter filters={filters} setFilters={setFilters} />
-        {filteredAnnonces.map((annonce) => (
-            <Link key={annonce.id} to={`/annonce/${annonce.id}`} className='card-annonce'>
-                <img src={annonce.image_url} alt={annonce.title} />
-                <h2>{annonce.title}</h2>
-                <p> Description : {annonce.description}</p>
-                <p> Prix : {annonce.price} € </p>
-                <p> Superficie : {annonce.superficie} m2 </p>
-                <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
-                <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-            </Link>
-        ))}
+        <div className='index-card'>
+          {filteredAnnonces.map((annonce) => (
+              <Link key={annonce.id} to={`/annonce/${annonce.id}`} className='card-annonce'>
+                  <img src={annonce.image_url} alt={annonce.title} />
+                  <div className="annonce-details">
+                      <h2>{annonce.title}</h2>
+                      <p> Description : {annonce.description}</p>
+                      <p> Prix : {annonce.price} € </p>
+                      <p> Superficie : {annonce.superficie} m2 </p>
+                      <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
+                      <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
+                  </div>
+              </Link>
+          ))}
+      </div>
     </div>
   );
 };
