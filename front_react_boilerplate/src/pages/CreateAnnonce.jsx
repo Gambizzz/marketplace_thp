@@ -16,7 +16,6 @@ const UserCreatAnnonce = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-
     formData.append('annonce[title]', title);
     formData.append('annonce[price]', price);
     formData.append('annonce[description]', description);

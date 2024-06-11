@@ -12,7 +12,7 @@ class AnnoncesController < ApplicationController
   # GET /annonces/1
   def show
     @annonce = current_user.annonces.find(params[:id])
-    render json: @annonce
+    render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
   end
 
   # GET /annonces/new
@@ -37,7 +37,7 @@ class AnnoncesController < ApplicationController
   def update
     @annonce = Annonce.find(params[:id])
     if @annonce.update(annonce_params)
-      render json: @annonce
+      render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
     else
       render json: @annonce.errors, status: :unprocessable_entity
     end
