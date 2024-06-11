@@ -69,3 +69,4 @@ class AnnoncesController < ApplicationController
     redirect_to annonces_path, alert: 'Not authorized' unless @annonce.user == current_user
   end
 end
+

@@ -40,23 +40,21 @@ const UserAnnonce = () => {
 
 
     return (
-        <div>
-            <h1>MES ANNONCES :</h1>
-            <ul>
-                {annonces.map((annonce) => (
-                    <li key={annonce.id}>
-                        <h2>{annonce.title}</h2>
-                        <p>Prix : {annonce.price}</p>
-                        <p>Description : {annonce.description}</p>
-                        <p>Superficie: {annonce.superficie}</p>
-                        <p>Nombre de pièce: {annonce.nombre_de_pieces}</p>
-                        <p>Terasse: {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-                        <Link to={`/edite-annonce/${annonce.id}`}><button>Éditer</button></Link>
-                        <button onClick={() => handleDelete(annonce.id)}>Supprimer</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
+      <div className='user-profile'>
+          <h1> MES ANNONCES </h1>
+          {annonces.map((annonce) => (
+              <div key={annonce.id} className='user-annonces'>
+                  <h2> {annonce.title} </h2>
+                  <p> Prix : {annonce.price} € </p>
+                  <p> Description : {annonce.description} </p>
+                  <p> Superficie : {annonce.superficie} m2 </p>
+                  <p> Nombre de pièces : {annonce.nombre_de_pieces} </p>
+                  <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
+                  <Link to={`/edite-annonce/${annonce.id}`} className='link-edit'> <button> Éditer </button> </Link>
+                  <button onClick={() => handleDelete(annonce.id)}> Supprimer </button>
+              </div>
+          ))}
+      </div>
     );
 };
 
