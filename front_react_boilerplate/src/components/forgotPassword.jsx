@@ -1,6 +1,4 @@
-// ForgotPassword.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import ky from 'ky';
 
 const ForgotPassword = () => {
@@ -9,11 +7,31 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await ky.post('/users/password', { json: { email } });
+      const response = await ky.post('http://localhost:3000/users/password', {
+        json: {
+          user: {
+            email
+          }
+        },
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).json();
+
       setMessage('Un email de réinitialisation du mot de passe a été envoyé.');
+      console.log(response);
     } catch (error) {
-      setMessage('Erreur lors de l\'envoi de l\'email de réinitialisation.');
+      if (error.response) {
+        const errorData = await error.response.json();
+        const errorMessage = Array.isArray(errorData.error) ? errorData.error.join(', ') : errorData.error;
+        setMessage(`Erreur lors de l'envoi de l'email de réinitialisation: ${errorMessage}`);
+        console.error('There was an error sending the reset password email!', errorData);
+      } else {
+        setMessage('Erreur lors de l\'envoi de l\'email de réinitialisation.');
+        console.error('There was an error sending the reset password email!', error);
+      }
     }
   };
 
@@ -32,13 +50,15 @@ const ForgotPassword = () => {
         <button type="submit">Envoyer l'email de réinitialisation</button>
       </form>
       <p>{message}</p>
-      <p>
-        <Link to="/signup">S'inscrire</Link> | <Link to="/signin">Se connecter</Link> | <Link to="/">Accueil</Link>
-      </p>
     </div>
   );
 };
 
 export default ForgotPassword;
+
+
+
+
+
 
 

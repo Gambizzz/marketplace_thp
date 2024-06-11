@@ -70,15 +70,15 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.delivery_method = :mailjet
-  config.action_mailer.mailjet_settings = {
-    api_key: ENV['MAILJET_API_KEY'],
-    secret_key: ENV['MAILJET_SECRET_KEY'],
-    api_version: 'v3.1'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'in-v3.mailjet.com',
+    port: 587,
+    user_name: ENV['MJ_API_KEY'],
+    password: ENV['MJ_SECRET_KEY'],
+    authentication: :plain,
+    enable_starttls_auto: true
   }
-
-  config.action_mailer.default_url_options = { host: 'monsite.com' }
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -96,4 +96,6 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

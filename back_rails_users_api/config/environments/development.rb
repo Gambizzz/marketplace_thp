@@ -38,12 +38,15 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :mailjet
-  config.action_mailer.mailjet_settings = {
-    api_key: ENV['MAILJET_API_KEY'],
-    secret_key: ENV['MAILJET_SECRET_KEY'],
-    api_version: 'v3.1'
-}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'in-v3.mailjet.com',
+    port: 587,
+    user_name: ENV['MJ_API_KEY'],
+    password: ENV['MJ_SECRET_KEY'],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
