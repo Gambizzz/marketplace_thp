@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ky from 'ky'; 
+import Filter from '../components/filter';
 
 const Home = () => {
   const [annonces, setAnnonces] = useState([]);
@@ -46,21 +47,23 @@ const Home = () => {
       isTerrasse
     );
   });
+
   return (
-<div className='index-annonces'>
-    <h2> TOUTES NOS ANNONCES </h2> 
-    {annonces.map((annonce) => (
-        <div key={annonce.id}>
-            <img src={annonce.image_url} alt={annonce.title} />
-            <h3>{annonce.title}</h3>
-            <p> Description : {annonce.description}</p>
-            <p> Prix : {annonce.price}</p>
-            <p> Superficie : {annonce.superficie}</p>
-            <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
-            <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-        </div>
-    ))}
-</div>
+    <div className='index-annonces'>
+        <h2> TOUTES NOS ANNONCES </h2> 
+        <Filter filters={filters} setFilters={setFilters} />
+        {filteredAnnonces.map((annonce) => (
+            <div key={annonce.id}>
+                <img src={annonce.image_url} alt={annonce.title} />
+                <h3>{annonce.title}</h3>
+                <p> Description : {annonce.description}</p>
+                <p> Prix : {annonce.price}</p>
+                <p> Superficie : {annonce.superficie}</p>
+                <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
+                <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
+            </div>
+        ))}
+    </div>
   );
 };
 

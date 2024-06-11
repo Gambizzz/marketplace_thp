@@ -13,7 +13,7 @@ const Filter = ({ filters, setFilters }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Prix Min:</label>
+        <label> Prix Min : </label>
         <input
           type="number"
           name="priceMin"
@@ -22,7 +22,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Prix Max:</label>
+        <label> Prix Max : </label>
         <input
           type="number"
           name="priceMax"
@@ -31,7 +31,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Superficie Min:</label>
+        <label> Superficie Min : </label>
         <input
           type="number"
           name="superficieMin"
@@ -40,7 +40,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Superficie Max:</label>
+        <label> Superficie Max : </label>
         <input
           type="number"
           name="superficieMax"
@@ -49,7 +49,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Nombre de pièces Min:</label>
+        <label> Nombre de pièces Min : </label>
         <input
           type="number"
           name="nbDePiecesMin"
@@ -58,7 +58,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Nombre de pièces Max:</label>
+        <label> Nombre de pièces Max : </label>
         <input
           type="number"
           name="nbDePiecesMax"
@@ -67,18 +67,18 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label>Terrasse:</label>
+        <label> Terrasse/Jardin : </label>
         <select
           name="terasse_jardin"
           value={filters.terasse_jardin}
           onChange={handleChange}
         >
-          <option value="">--Choisir--</option>
+          <option value=""> Choisir </option>
           <option value="true">Oui</option>
           <option value="false">Non</option>
         </select>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit"> Confirmer </button>
     </form>
   );
 };

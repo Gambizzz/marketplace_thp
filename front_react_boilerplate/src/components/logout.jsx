@@ -17,7 +17,7 @@ function LogoutLink() {
   };
 
   return (
-    <button onClick={handleLogout}>Déconnexion</button>
+    <button onClick={handleLogout}> Déconnexion </button>
   );
 }
 
