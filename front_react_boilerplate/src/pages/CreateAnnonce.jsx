@@ -47,8 +47,6 @@ const UserCreatAnnonce = () => {
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
   }
 
-  console.log(previewImage);
-
   return (
     <form onSubmit={handleSubmit} className='create-form'>
       <h1> CRÉER UNE ANNONCE </h1>
