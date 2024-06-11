@@ -10,28 +10,27 @@ const UserCreatAnnonce = () => {
   const [nombre_de_pieces, setNombre_de_pieces] = useState('');
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('annonce[title]', title);
+    formData.append('annonce[price]', price);
+    formData.append('annonce[description]', description);
+    formData.append('annonce[superficie]', superficie);
+    formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
+    formData.append('annonce[terasse_jardin]', terasse_jardin);
+    formData.append('annonce[image]', image);
 
     const token = Cookies.get('token'); 
 
     try {
       const response = await ky.post('http://localhost:3000/cree-annonces', {
-        json: {
-          annonce: {
-            title,
-            price,
-            description,
-            superficie,
-            nombre_de_pieces,
-            terasse_jardin,
-            image
-          }
-        },
+        method: 'POST',
+        body: formData,
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`  // Ajoute le préfixe Bearer et le token dans l'en-tête
         }
       }).json();
 
@@ -43,12 +42,20 @@ const UserCreatAnnonce = () => {
     }
   };
 
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
+    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+  }
+
+  console.log(previewImage);
+
   return (
     <form onSubmit={handleSubmit} className='create-form'>
       <h1> CRÉER UNE ANNONCE </h1>
       <div>
-        <label> Image : </label>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
+        <label>Image:</label>
+        <input type="file" onChange={handleImage} accept="image/*" />
+        {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
         <label> Titre : </label>

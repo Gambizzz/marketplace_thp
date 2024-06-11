@@ -6,12 +6,13 @@ class AnnoncesController < ApplicationController
   # GET /annonces
   def index
     @annonces = Annonce.all
-    render json: @annonces
+    render json: @annonces.map { |annonce| annonce.as_json.merge(image_url: url_for(annonce.image)) }
   end
 
   # GET /annonces/1
   def show
-    render json: @annonce.to_json(include: { user: { only: :email } })
+    @annonce = current_user.annonces.find(params[:id])
+    render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
   end
 
   # GET /annonces/new
@@ -36,7 +37,7 @@ class AnnoncesController < ApplicationController
   def update
     @annonce = Annonce.find(params[:id])
     if @annonce.update(annonce_params)
-      render json: @annonce
+      render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
     else
       render json: @annonce.errors, status: :unprocessable_entity
     end
@@ -51,7 +52,7 @@ class AnnoncesController < ApplicationController
   # GET /mes-annonces
   def mes_annonces
     @annonces = current_user.annonces
-    render json: @annonces
+    render json: @annonces.map { |annonce| annonce.as_json.merge(image_url: url_for(annonce.image)) }
   end
 
   private
