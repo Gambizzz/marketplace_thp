@@ -14,25 +14,23 @@ const UserCreatAnnonce = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+
+    formData.append('annonce[title]', title);
+    formData.append('annonce[price]', price);
+    formData.append('annonce[description]', description);
+    formData.append('annonce[superficie]', superficie);
+    formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
+    formData.append('annonce[terasse_jardin]', terasse_jardin);
+    formData.append('annonce[image]', image);
 
     const token = Cookies.get('token');  // Récupère le token depuis les cookies
 
     try {
       const response = await ky.post('http://localhost:3000/cree-annonces', {
-        json: {
-          annonce: {
-            title,
-            price,
-            description,
-            superficie,
-            nombre_de_pieces,
-            terasse_jardin,
-            image
-          }
-        },
-        // method:"POST",
+        method: 'POST',
+        body: formData,
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`  // Ajoute le préfixe Bearer et le token dans l'en-tête
         }
       }).json();

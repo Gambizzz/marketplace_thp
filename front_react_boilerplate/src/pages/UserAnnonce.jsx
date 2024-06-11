@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
@@ -46,6 +46,7 @@ const UserAnnonce = () => {
                 {annonces.map((annonce) => (
                     <li key={annonce.id}>
                         <h2>{annonce.title}</h2>
+                        <img src={annonce.image_url} alt={annonce.title} />
                         <p>Prix : {annonce.price}</p>
                         <p>Description : {annonce.description}</p>
                         <p>Superficie: {annonce.superficie}</p>
