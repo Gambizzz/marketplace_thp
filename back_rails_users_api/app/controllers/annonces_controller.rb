@@ -11,8 +11,7 @@ class AnnoncesController < ApplicationController
 
   # GET /annonces/1
   def show
-    @annonce = current_user.annonces.find(params[:id])
-    render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
+    render json: @annonce.as_json(include: { user: { only: :email } }).merge(image_url: url_for(@annonce.image))
   end
 
   # GET /annonces/new
