@@ -1,5 +1,5 @@
 class AnnoncesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_annonce, only: %i[show update destroy]
   before_action :authorize_user!, only: %i[update destroy]
 
@@ -11,8 +11,7 @@ class AnnoncesController < ApplicationController
 
   # GET /annonces/1
   def show
-    @annonce = current_user.annonces.find(params[:id])
-    render json: @annonce
+    render json: @annonce.to_json(include: { user: { only: :email } })
   end
 
   # GET /annonces/new

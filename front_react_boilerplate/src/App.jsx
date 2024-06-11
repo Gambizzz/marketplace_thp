@@ -14,6 +14,7 @@ import './App.scss';
 import UserCreatAnnonce from './pages/CreateAnnonce';
 import UserAnnonce from './pages/UserAnnonce';
 import EditeAnnonce from './pages/EditAnnonce';
+import AnnonceDetails from './pages/AnnonceDetails';
 
 function App() {
   const [user, setUser] = useAtom(userAtom);
@@ -46,6 +47,8 @@ function App() {
         <Route path="/cree-annonces" element={<UserCreatAnnonce />} />
         <Route path="/mes-annonces" element={<UserAnnonce />} />
         <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
+        <Route path="/annonce/:id" element={<AnnonceDetails /> } />
+        <Route path="/ville/:city" element={<Nav />} />
       </Routes>
     </BrowserRouter>
   );
