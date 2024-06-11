@@ -7,12 +7,15 @@ const ResetPassword = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [message, setMessage] = useState('');
+  const [tokenValid, setTokenValid] = useState(true);
 
   useEffect(() => {
     async function checkTokenValidity() {
       try {
         await ky.get(`/api/password/reset/${token}`);
+        setTokenValid(true);
       } catch (error) {
+        setTokenValid(false);
         setMessage('Le lien de réinitialisation du mot de passe est invalide ou a expiré.');
       }
     }
@@ -22,12 +25,45 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await ky.post(`/api/password/reset/${token}`, { json: { password, password_confirmation: passwordConfirmation } });
+      const response = await ky.post('http://localhost:3000/users/password', {
+        json: { 
+          user: { 
+            email: '', 
+            password: password,
+            password_confirmation: passwordConfirmation
+          },
+          reset_password_token: token
+        },
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).json();
       setMessage('Le mot de passe a été réinitialisé avec succès.');
+      console.log(response);
     } catch (error) {
-      setMessage('Erreur lors de la réinitialisation du mot de passe.');
+      if (error.response) {
+        const errorData = await error.response.json();
+        const errorMessage = Array.isArray(errorData.error) ? errorData.error.join(', ') : errorData.error;
+        setMessage(`Erreur lors de la réinitialisation du mot de passe: ${errorMessage}`);
+        console.error('There was an error resetting the password!', errorData);
+      } else {
+        setMessage('Erreur lors de la réinitialisation du mot de passe.');
+        console.error('There was an error resetting the password!', error);
+      }
     }
   };
+
+  if (!tokenValid) {
+    return (
+      <div>
+        <h2>Token invalide</h2>
+        <p>{message}</p>
+        <p>
+          <Link to="/signup">S'inscrire</Link> | <Link to="/login">Se connecter</Link> | <Link to="/">Accueil</Link>
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -53,10 +89,14 @@ const ResetPassword = () => {
       </form>
       <p>{message}</p>
       <p>
-        <Link to="/signup">S'inscrire</Link> | <Link to="/signin">Se connecter</Link> | <Link to="/">Accueil</Link>
+        <Link to="/signup">S'inscrire</Link> | <Link to="/login">Se connecter</Link> | <Link to="/">Accueil</Link>
       </p>
     </div>
   );
 };
 
 export default ResetPassword;
+
+
+
+
