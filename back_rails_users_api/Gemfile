@@ -52,3 +52,7 @@ gem "dotenv-rails"
 gem "faker"
 
 gem "table_print", "~> 1.5"
+gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'ruby-vips'
+

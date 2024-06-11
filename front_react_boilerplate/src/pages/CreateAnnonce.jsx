@@ -7,42 +7,39 @@ const UserCreatAnnonce = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [superficie, setSuperficie] = useState('');
-  const [nombre_de_pièces, setNombre_de_pièces] = useState('');
+  const [nombre_de_pieces, setnombre_de_pieces] = useState('');
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
 
-    const token = Cookies.get('token');  // Récupère le token depuis les cookies
+    formData.append('annonce[title]', title);
+    formData.append('annonce[price]', price);
+    formData.append('annonce[description]', description);
+    formData.append('annonce[superficie]', superficie);
+    formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
+    formData.append('annonce[terasse_jardin]', terasse_jardin);
+    if (image) {
+      formData.append('annonce[image]', image);
+    }
+
+    const token = Cookies.get('token');
 
     try {
       const response = await ky.post('http://localhost:3000/cree-annonces', {
-        json: {
-          annonce: {
-            title,
-            price,
-            description,
-            superficie,
-            nombre_de_pièces,
-            terasse_jardin,
-            image
-          }
-        },
-        // method:"POST",
+        body: formData,
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`  // Ajoute le préfixe Bearer et le token dans l'en-tête
         }
       }).json();
 
-      console.log(response);
+      console.log('Annonce créée avec succès', response);
     } catch (error) {
-      console.error('There was an error creating the annonce!', error);
+      console.error('Erreur lors de la création de l\'annonce!', error);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -68,7 +65,7 @@ const UserCreatAnnonce = () => {
       </div>
       <div>
         <label>Nombre de pièces:</label>
-        <input type="number" value={nombre_de_pièces} onChange={(e) => setNombre_de_pièces(e.target.value)} />
+        <input type="number" value={nombre_de_pieces} onChange={(e) => setnombre_de_pieces(e.target.value)} />
       </div>
       <div>
         <label>Terasse/Jardin:</label>
@@ -78,10 +75,10 @@ const UserCreatAnnonce = () => {
           <label htmlFor="terasse_jardin_oui">Oui</label>
           <input
             type="radio" id="terasse_jardin_non" name="terasse_jardin" value={false} checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-            <label htmlFor="terasse_jardin_non">non</label>
+          <label htmlFor="terasse_jardin_non">Non</label>
         </div>
       </div>
-      <button type="submit">Create Annonce</button>
+      <button type="submit">Créer Annonce</button>
     </form>
   );
 };
