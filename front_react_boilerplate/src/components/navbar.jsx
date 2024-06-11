@@ -1,29 +1,36 @@
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../atoms';
+import Dropdown from './Dropdown';
 import '../index.scss';
 
 const Nav = () => {
   const [user] = useAtom(userAtom);
 
+  const cityItems = [
+    { label: 'Paris', link: '/ville/paris' },
+    { label: 'Marseille', link: '/ville/marseille' },
+    { label: 'Toulouse', link: '/ville/toulouse' }
+  ]
+  
   return (
     <nav>
-      <ul>
         {user.isLoggedIn ? (
-          <>
-            <li> <Link to="/">Home</Link> </li>
-            <li> <Link to="/logout"> Se déconnecter </Link></li>
-            <li> <Link to="/cree-annonces"> crée une annonces </Link>  </li>
-            <li> <Link to="/mes-annonces">Mes annonces </Link> </li>
-          </>
+            <div className='navbar'>
+                <Link to="/"> DOMUS </Link>
+                <Link to="/cree-annonces"> CRÉER UNE ANNONCE </Link>
+                <Link to="/mes-annonces"> MON PROFIL </Link>
+                <Dropdown title="VILLES" items={cityItems} />
+                <Link to="/logout"> DÉCONNEXION </Link>
+            </div>
         ) : (
-          <>
-            <li> <Link to="/">Home</Link> </li>
-            <li> <Link to="/signup"> S'inscrire </Link></li>
-            <li> <Link to="/login"> Se connecter </Link></li>
-          </>
+            <div className='navbar'>
+                <Link to="/"> DOMUS </Link>
+                <Link to="/signup"> INSCRIPTION </Link>
+                <Link to="/login"> CONNEXION </Link>
+                <Dropdown title="VILLES" items={cityItems} />
+            </div>
         )}
-      </ul>
     </nav>
   );
 }

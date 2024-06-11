@@ -12,7 +12,6 @@ const UserCreatAnnonce = () => {
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -24,7 +23,7 @@ const UserCreatAnnonce = () => {
     formData.append('annonce[terasse_jardin]', terasse_jardin);
     formData.append('annonce[image]', image);
 
-    const token = Cookies.get('token');  // Récupère le token depuis les cookies
+    const token = Cookies.get('token'); 
 
     try {
       const response = await ky.post('http://localhost:3000/cree-annonces', {
@@ -36,6 +35,8 @@ const UserCreatAnnonce = () => {
       }).json();
 
       console.log(response);
+
+      window.location.href = "/";
     } catch (error) {
       console.error('There was an error creating the annonce!', error);
     }
@@ -49,46 +50,50 @@ const UserCreatAnnonce = () => {
   console.log(previewImage);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='create-form'>
+      <h1> CRÉER UNE ANNONCE </h1>
       <div>
         <label>Image:</label>
         <input type="file" onChange={handleImage} accept="image/*" />
         {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
-        <label>Title:</label>
+        <label> Titre : </label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
       <div>
-        <label>Price:</label>
+        <label> Prix : </label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+        <label> € </label>
       </div>
       <div>
-        <label>Description:</label>
+        <label> Description : </label>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
       <div>
-        <label>Superficie:</label>
+        <label> Superficie : </label>
         <input type="number" value={superficie} onChange={(e) => setSuperficie(e.target.value)} />
+        <label> m2 </label>
       </div>
       <div>
-        <label>Nombre de pièces:</label>
+        <label> Nombre de pièces : </label>
         <input type="number" value={nombre_de_pieces} onChange={(e) => setNombre_de_pieces(e.target.value)} />
       </div>
-      <div>
-        <label>Terasse/Jardin:</label>
+      <div className='checkbox'>
+        <label> Terrasse/Jardin : </label>
         <div>
           <input
             type="radio" id="terasse_jardin_oui" name="terasse_jardin" value={true} checked={terasse_jardin === true} onChange={() => setTerasse_jardin(true)} />
-          <label htmlFor="terasse_jardin_oui">Oui</label>
+          <label htmlFor="terasse_jardin_oui"> Oui </label>
           <input
             type="radio" id="terasse_jardin_non" name="terasse_jardin" value={false} checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-            <label htmlFor="terasse_jardin_non">non</label>
+            <label htmlFor="terasse_jardin_non"> Non </label>
         </div>
       </div>
-      <button type="submit">Create Annonce</button>
+      <button type="submit"> CRÉER </button>
     </form>
   );
 };
 
 export default UserCreatAnnonce;
+

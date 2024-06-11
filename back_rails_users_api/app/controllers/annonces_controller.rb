@@ -1,5 +1,5 @@
 class AnnoncesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_annonce, only: %i[show update destroy]
   before_action :authorize_user!, only: %i[update destroy]
 
@@ -69,3 +69,4 @@ class AnnoncesController < ApplicationController
     redirect_to annonces_path, alert: 'Not authorized' unless @annonce.user == current_user
   end
 end
+
