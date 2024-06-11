@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ky from 'ky'; 
 import Filter from '../components/filter';
+import Hero from '../components/hero';
 
 const Home = () => {
   const [annonces, setAnnonces] = useState([]);
@@ -50,10 +52,11 @@ const Home = () => {
 
   return (
     <div className='index-annonces'>
+      <Hero />
         <h1> TOUTES NOS ANNONCES </h1> 
         <Filter filters={filters} setFilters={setFilters} />
         {filteredAnnonces.map((annonce) => (
-            <div key={annonce.id} className='card-annonce'>
+            <Link key={annonce.id} to={`/annonce/${annonce.id}`} className='card-annonce'>
                 <img src={annonce.image_url} alt={annonce.title} />
                 <h2>{annonce.title}</h2>
                 <p> Description : {annonce.description}</p>
@@ -61,10 +64,11 @@ const Home = () => {
                 <p> Superficie : {annonce.superficie} m2 </p>
                 <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
                 <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-            </div>
+            </Link>
         ))}
     </div>
   );
 };
 
 export default Home;
+
