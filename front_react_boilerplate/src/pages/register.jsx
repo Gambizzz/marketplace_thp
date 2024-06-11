@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '../atoms';
 import Cookies from 'js-cookie';
 import ky from 'ky';
-
 
 function SignUp() {
   const [, setUser] = useAtom(userAtom);
@@ -41,32 +40,37 @@ function SignUp() {
       setEmail('');
       setPassword('');
       setPasswordConfirmation('');
+      
+      window.location.href = "/";
     } catch (error) {
       setError('Erreur durant l\'inscription. Veuillez recommencer.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>S'inscrire</h1>
+    <form onSubmit={handleSubmit} className='login-form'>
+      <h1> S'INSCRIRE </h1>
       {error && <p>{error}</p>}
       <div>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='email'> Email </label>
         <input type='email' id='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required />
       </div>
       <div>
-        <label htmlFor='password'>Mot de passe</label>
+        <label htmlFor='password'> Mot de passe </label>
         <input type='password' id='password' placeholder='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
       <div>
-        <label htmlFor='password_confirmation'>Confirme ton mot de passe</label>
+        <label htmlFor='password_confirmation'> Confirme ton mot de passe </label>
         <input type='password' id='password_confirmation' placeholder='Confirme ton mot de passe' value={password_confirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} required />
       </div>
-      <button type='submit'>S'inscrire</button>
-      <Link to="/login">Se connecter</Link> | <Link to="/">Accueil</Link>
+      <div>
+        <button type='submit'> INSCRIPTION </button>
+      </div>
+      <Link to="/login" className='links'> Se connecter </Link> | <Link to="/" className='links'> Accueil </Link>
     </form>
   );
 }
 
 export default SignUp;
+
 

@@ -11,7 +11,7 @@ const Filter = ({ filters, setFilters }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='form-filters'>
       <div>
         <label> Prix Min : </label>
         <input
@@ -67,15 +67,15 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Terrasse/Jardin : </label>
+        <label> Terrasse/Jardin </label>
         <select
           name="terasse_jardin"
           value={filters.terasse_jardin}
           onChange={handleChange}
         >
           <option value=""> Choisir </option>
-          <option value="true">Oui</option>
-          <option value="false">Non</option>
+          <option value="true"> Oui </option>
+          <option value="false"> Non </option>
         </select>
       </div>
       <button type="submit"> Confirmer </button>

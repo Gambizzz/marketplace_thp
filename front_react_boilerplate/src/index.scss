@@ -22,12 +22,45 @@ body {
 
 
 /* START HOME */
-.index-annonces h2, h3 {
+.index-annonces {
+  margin-top: 6%;
+
+  h1, h2 {
   color: $title-color;
 }
 
-.index-annonces p {
+  p {
+    color: $font-color;
+  }
+}
+
+.card-annonce {
+  margin-bottom: 4%;
+}
+
+.form-filters {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: $font-color;
+
+  div {
+    margin-left: 2%;
+  }
+
+  button {
+    margin-left: 2%;
+    border: none;
+    background-color: transparent;
+    color: $title-color;
+    cursor: pointer;
+  }
+
+  input, select {
+    color: $title-color;
+  }
 }
 /* END HOME */
 
@@ -55,8 +88,9 @@ body {
 /* END USER PROFILE */
 
 
-/* START CREATE ANNONCE */
-.create-form {
+
+/* START CREATE/EDIT ANNONCE */
+.create-form, .edit-form {
   margin-top: 4%;
   color: $font-color;
   display: flex;
@@ -83,11 +117,64 @@ body {
     cursor: pointer;
   }
 }
+/* END CREATE/EDIT ANNONCE */
 
 
+/* START LOGOUT FORM */
+.logout-form {
+  margin-top: 6%;
+
+  h1 {
+    color: $title-color;
+    margin-bottom: 6%;
+  }
+
+  button {
+    border: solid 2px $font-color;
+    border-radius: 5px;
+    background-color: transparent;
+    color: $title-color;
+    cursor: pointer;
+  }
+}
+/* END LOGOUT FORM */
 
 
-/* END CREATE ANNONCE */
+/* START LOGIN/REGISTER FORM */
+.login-form {
+  margin-top: 6%;
+  color: $font-color;
+
+  h1 {
+    color: $title-color;
+    margin-bottom: 6%;
+  }
+
+  div {
+    margin-bottom: 2%;
+  }
+
+  input::placeholder, input {
+    color: $title-color;
+  }
+
+  button {
+    margin-top: 2%;
+    border: none;
+    background-color: transparent;
+    color: $title-color;
+    font-size: large;
+    cursor: pointer;
+  }
+}
+
+.links {
+  text-decoration: none;
+  color: $font-color;
+  cursor: pointer;
+}
+/* END LOGIN/REGISTER FORM */
+
 
 
 

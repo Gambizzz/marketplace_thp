@@ -10,7 +10,7 @@ const EditeAnnonce = () => {
     const [superficie, setSuperficie] = useState('');
     const [nombre_de_pieces, setNombre_de_pieces] = useState('');
     const [terasse_jardin, setTerasse_jardin] = useState(null);
-    const { id } = useParams(); // Récupérer l'ID du post depuis l'URL
+    const { id } = useParams();
 
     useEffect(() => {
         fetchAnnonce();
@@ -46,36 +46,55 @@ const EditeAnnonce = () => {
                 }
             });
 
+            window.location.href = "/"; 
         } catch (error) {
             console.error('There was an error saving the edited annonce!', error);
         }
     };
 
     return (
-        <div>
-            <h1>Page d'édition de l'annonce avec l'ID {id}</h1>
+        <div className='edit-form'>
+            <h1> ÉDITER MON ANNONCE </h1>
             <div>
+              <div>
+                <label> Titre : </label>
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+              </div>
+              <div>
+                <label> Prix : </label>
                 <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                <label> € </label>
+              </div>
+              <div>
+                <label> Description : </label>
                 <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+              </div>
+              <div>
+                <label> Superficie : </label>
                 <input type="number" value={superficie} onChange={(e) => setSuperficie(e.target.value)} />
+                <label> m2 </label>
+              </div>
+              <div>
+                <label> Nombre de pièces : </label>
                 <input type="number" value={nombre_de_pieces} onChange={(e) => setNombre_de_pieces(e.target.value)} />
-                <div>
-                    <label>Terasse/Jardin:</label>
+              </div>
+                <div className='checkbox'>
+                    <label> Terrasse/Jardin : </label>
                     <div>
                         <input type="radio" id="terasse_jardin_oui" name="terasse_jardin" value="oui" checked={terasse_jardin === true} onChange={() => setTerasse_jardin(true)} />
-                        <label htmlFor="terasse_jardin_oui">Oui</label>
+                        <label htmlFor="terasse_jardin_oui"> Oui </label>
                     </div>
                     <div>
                         <input
                             type="radio" id="terasse_jardin_non" name="terasse_jardin" value="non" checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-                        <label htmlFor="terasse_jardin_non">Non</label>
+                        <label htmlFor="terasse_jardin_non"> Non </label>
                     </div>
                 </div>
-                <button onClick={handleEdit}>Save</button>
+                <button onClick={handleEdit}> ENREGISTRER </button>
             </div>
         </div>
     );
 };
 
 export default EditeAnnonce;
+

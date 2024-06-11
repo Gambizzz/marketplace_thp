@@ -26,7 +26,7 @@ const Home = () => {
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);
     }
-  };  
+  };
 
   const filteredAnnonces = annonces.filter((annonce) => {
     const priceMin = filters.priceMin ? parseFloat(filters.priceMin) : 0;
@@ -50,15 +50,15 @@ const Home = () => {
 
   return (
     <div className='index-annonces'>
-        <h2> TOUTES NOS ANNONCES </h2> 
+        <h1> TOUTES NOS ANNONCES </h1> 
         <Filter filters={filters} setFilters={setFilters} />
         {filteredAnnonces.map((annonce) => (
-            <div key={annonce.id}>
+            <div key={annonce.id} className='card-annonce'>
                 <img src={annonce.image_url} alt={annonce.title} />
-                <h3>{annonce.title}</h3>
+                <h2>{annonce.title}</h2>
                 <p> Description : {annonce.description}</p>
-                <p> Prix : {annonce.price}</p>
-                <p> Superficie : {annonce.superficie}</p>
+                <p> Prix : {annonce.price} € </p>
+                <p> Superficie : {annonce.superficie} m2 </p>
                 <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
                 <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
             </div>

@@ -11,11 +11,10 @@ const UserCreatAnnonce = () => {
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = Cookies.get('token');  // Récupère le token depuis les cookies
+    const token = Cookies.get('token'); 
 
     try {
       const response = await ky.post('http://localhost:3000/cree-annonces', {
@@ -30,19 +29,19 @@ const UserCreatAnnonce = () => {
             image
           }
         },
-        // method:"POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`  // Ajoute le préfixe Bearer et le token dans l'en-tête
+          Authorization: `Bearer ${token}`
         }
       }).json();
 
       console.log(response);
+
+      window.location.href = "/";
     } catch (error) {
       console.error('There was an error creating the annonce!', error);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit} className='create-form'>
@@ -58,6 +57,7 @@ const UserCreatAnnonce = () => {
       <div>
         <label> Prix : </label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+        <label> € </label>
       </div>
       <div>
         <label> Description : </label>
@@ -66,6 +66,7 @@ const UserCreatAnnonce = () => {
       <div>
         <label> Superficie : </label>
         <input type="number" value={superficie} onChange={(e) => setSuperficie(e.target.value)} />
+        <label> m2 </label>
       </div>
       <div>
         <label> Nombre de pièces : </label>
@@ -82,9 +83,10 @@ const UserCreatAnnonce = () => {
             <label htmlFor="terasse_jardin_non"> Non </label>
         </div>
       </div>
-      <button type="submit"> Créer </button>
+      <button type="submit"> CRÉER </button>
     </form>
   );
 };
 
 export default UserCreatAnnonce;
+
