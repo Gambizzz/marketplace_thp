@@ -1,5 +1,4 @@
 require_relative "boot"
-
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -36,5 +35,7 @@ module BackApi
         config.middleware.use ActionDispatch::Cookies
     
         config.middleware.use config.session_store, config.session_options
+
+        config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   end
 end
