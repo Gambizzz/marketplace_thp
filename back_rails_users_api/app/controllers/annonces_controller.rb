@@ -6,7 +6,7 @@ class AnnoncesController < ApplicationController
   # GET /annonces
   def index
     @annonces = Annonce.all
-    render json: @annonces
+    render json: @annonces.map { |annonce| annonce.as_json.merge(image_url: url_for(annonce.image)) }
   end
 
   # GET /annonces/1
@@ -52,7 +52,7 @@ class AnnoncesController < ApplicationController
   # GET /mes-annonces
   def mes_annonces
     @annonces = current_user.annonces
-    render json: @annonces
+    render json: @annonces.map { |annonce| annonce.as_json.merge(image_url: url_for(annonce.image)) }
   end
 
   private

@@ -10,6 +10,7 @@ const UserCreatAnnonce = () => {
   const [nombre_de_pieces, setNombre_de_pieces] = useState('');
   const [terasse_jardin, setTerasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
 
   const handleSubmit = async (e) => {
@@ -41,16 +42,23 @@ const UserCreatAnnonce = () => {
     }
   };
 
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
+    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+  }
+
+  console.log(previewImage);
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Image:</label>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} accept="image/*" />
+        <input type="file" onChange={handleImage} accept="image/*" />
       </div>
       <div>
         <label>Title:</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
         <label>Price:</label>

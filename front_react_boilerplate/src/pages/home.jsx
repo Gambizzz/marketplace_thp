@@ -28,6 +28,7 @@ const Home = () => {
     }
   };  
 
+  // FILTRE
   const filteredAnnonces = annonces.filter((annonce) => {
     const priceMin = filters.priceMin ? parseFloat(filters.priceMin) : 0;
     const priceMax = filters.priceMax ? parseFloat(filters.priceMax) : Infinity;
@@ -47,6 +48,7 @@ const Home = () => {
       isTerrasse
     );
   });
+
   return (
     <div>
       <h1>PAGE D'ACCUEIL</h1>
