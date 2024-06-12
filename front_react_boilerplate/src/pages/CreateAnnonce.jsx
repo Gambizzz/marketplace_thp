@@ -8,7 +8,7 @@ const UserCreatAnnonce = () => {
   const [description, setDescription] = useState('');
   const [superficie, setSuperficie] = useState('');
   const [nombre_de_pieces, setNombre_de_pieces] = useState('');
-  const [terasse_jardin, setTerasse_jardin] = useState(null);
+  const [terrasse_jardin, setterrasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [city, setCity] = useState('');
@@ -27,7 +27,7 @@ const UserCreatAnnonce = () => {
     formData.append('annonce[description]', description);
     formData.append('annonce[superficie]', superficie);
     formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
-    formData.append('annonce[terasse_jardin]', terasse_jardin);
+    formData.append('annonce[terrasse_jardin]', terrasse_jardin);
     formData.append('annonce[city]', city);
     formData.append('annonce[image]', image);
 
@@ -57,55 +57,55 @@ const UserCreatAnnonce = () => {
 
   return (
     <form onSubmit={handleSubmit} className='create-form'>
-      <h1>CRÉER UNE ANNONCE</h1>
+      <h1> CRÉER UNE ANNONCE </h1>
       <div>
-        <label>Image:</label>
+        <label> Image : </label>
         <input type="file" onChange={handleImage} accept="image/*" />
         {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
       </div>
       <div>
-        <label>Titre:</label>
+        <label> Titre : </label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
       </div>
       <div>
-        <label>Prix:</label>
+        <label> Prix : </label>
         <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
         <label>€</label>
       </div>
       <div>
-        <label>Description:</label>
+        <label> Description : </label>
         <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
       </div>
       <div>
-        <label>Superficie:</label>
+        <label> Superficie : </label>
         <input type="number" value={superficie} onChange={(e) => setSuperficie(e.target.value)} />
         <label>m²</label>
       </div>
       <div>
-        <label>Nombre de pièces:</label>
+        <label> Nombre de pièces : </label>
         <input type="number" value={nombre_de_pieces} onChange={(e) => setNombre_de_pieces(e.target.value)} />
       </div>
       <div className='checkbox'>
-        <label>Terrasse/Jardin:</label>
+        <label> Terrasse/Jardin : </label>
         <div>
           <input
-            type="radio" id="terasse_jardin_oui" name="terasse_jardin" value={true} checked={terasse_jardin === true} onChange={() => setTerasse_jardin(true)} />
-          <label htmlFor="terasse_jardin_oui">Oui</label>
+            type="radio" id="terrasse_jardin_oui" name="terrasse_jardin" value={true} checked={terrasse_jardin === true} onChange={() => setterrasse_jardin(true)} />
+          <label htmlFor="terrasse_jardin_oui"> Oui </label>
           <input
-            type="radio" id="terasse_jardin_non" name="terasse_jardin" value={false} checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-          <label htmlFor="terasse_jardin_non">Non</label>
+            type="radio" id="terrasse_jardin_non" name="terrasse_jardin" value={false} checked={terrasse_jardin === false} onChange={() => setterrasse_jardin(false)} />
+          <label htmlFor="terrasse_jardin_non"> Non </label>
         </div>
       </div>
       <div>
-        <label>Ville:</label>
-        <select value={city} onChange={handleSelection}>
+        <label> Ville : </label>
+        <select value={city} onChange={handleSelection} className='drop-create'>
           <option value=''> Sélectionner une ville </option>
           {cities.map((city, index) => (
             <option key={index} value={city}>{city}</option>
           ))}
         </select>
       </div>
-      <button type="submit"> CRÉER </button>
+      <button type="submit" className='btn-create'> CRÉER </button>
     </form>
   );
 };

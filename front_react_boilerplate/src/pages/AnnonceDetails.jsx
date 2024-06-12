@@ -35,7 +35,7 @@ const AnnonceDetails = () => {
         <p> Prix : {annonce.price} € </p>
         <p> Superficie : {annonce.superficie} m2 </p>
         <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
-        <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
+        <p> Terrasse : {annonce.terrasse_jardin ? "Oui" : "Non"} </p>
         <p> Ville : {annonce.city} </p>
         {user.isLoggedIn ? (
           <p> <strong> Propriétaire : </strong> {annonce.user.email} </p>

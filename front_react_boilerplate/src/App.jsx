@@ -13,11 +13,11 @@ import ResetPassword from './components/resetPassword';
 import './App.scss';
 import UserCreatAnnonce from './pages/CreateAnnonce';
 import UserAnnonce from './pages/UserAnnonce';
-import EditeAnnonce from './pages/EditAnnonce';
+import EditAnnonce from './pages/EditAnnonce';
 import AnnonceDetails from './pages/AnnonceDetails';
 
 function App() {
-  const [user, setUser] = useAtom(userAtom);
+  const [, setUser] = useAtom(userAtom);
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -46,7 +46,7 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/cree-annonces" element={<UserCreatAnnonce />} />
         <Route path="/mes-annonces" element={<UserAnnonce />} />
-        <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
+        <Route path="/edit-annonce/:id" element={<EditAnnonce />} />
         <Route path="/annonce/:id" element={<AnnonceDetails /> } />
         <Route path="/:city" element={<Home />} />
       </Routes>

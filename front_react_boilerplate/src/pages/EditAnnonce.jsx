@@ -3,16 +3,16 @@ import ky from 'ky';
 import Cookies from 'js-cookie';
 import { useParams } from 'react-router-dom';
 
-const EditeAnnonce = () => {
+const EditAnnonce = () => {
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [superficie, setSuperficie] = useState('');
     const [nombre_de_pieces, setNombre_de_pieces] = useState('');
-    const [terasse_jardin, setTerasse_jardin] = useState(null);
+    const [terrasse_jardin, setterrasse_jardin] = useState(null);
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
-    const { id } = useParams(); // Récupérer l'ID du post depuis l'URL
+    const { id } = useParams();
 
     useEffect(() => {
         fetchAnnonce();
@@ -31,7 +31,7 @@ const EditeAnnonce = () => {
             setDescription(response.description);
             setSuperficie(response.superficie);
             setNombre_de_pieces(response.nombre_de_pieces);
-            setTerasse_jardin(response.terasse_jardin);
+            setterrasse_jardin(response.terrasse_jardin);
             setImage(response.image_url);
             setPreviewImage(response.image_url);
         } catch (error) {
@@ -48,7 +48,7 @@ const EditeAnnonce = () => {
         formData.append('annonce[description]', description);
         formData.append('annonce[superficie]', superficie);
         formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
-        formData.append('annonce[terasse_jardin]', terasse_jardin);
+        formData.append('annonce[terrasse_jardin]', terrasse_jardin);
         formData.append('annonce[image]', image);
 
         try {
@@ -75,7 +75,7 @@ const EditeAnnonce = () => {
             <h1> ÉDITER MON ANNONCE </h1>
             <div>
                 <div>
-                    <label>Image:</label>
+                    <label> Image : </label>
                     <input type="file" onChange={handleImage} accept="image/*" />
                     {<img src={previewImage} alt="Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />}
                 </div>
@@ -104,13 +104,13 @@ const EditeAnnonce = () => {
                 <div className='checkbox'>
                     <label> Terrasse/Jardin : </label>
                     <div>
-                        <input type="radio" id="terasse_jardin_oui" name="terasse_jardin" value="oui" checked={terasse_jardin === true} onChange={() => setTerasse_jardin(true)} />
-                        <label htmlFor="terasse_jardin_oui"> Oui </label>
+                        <input type="radio" id="terrasse_jardin_oui" name="terrasse_jardin" value="oui" checked={terrasse_jardin === true} onChange={() => setterrasse_jardin(true)} />
+                        <label htmlFor="terrasse_jardin_oui"> Oui </label>
                     </div>
                     <div>
                         <input
-                            type="radio" id="terasse_jardin_non" name="terasse_jardin" value="non" checked={terasse_jardin === false} onChange={() => setTerasse_jardin(false)} />
-                        <label htmlFor="terasse_jardin_non"> Non </label>
+                            type="radio" id="terrasse_jardin_non" name="terrasse_jardin" value="non" checked={terrasse_jardin === false} onChange={() => setterrasse_jardin(false)} />
+                        <label htmlFor="terrasse_jardin_non"> Non </label>
                     </div>
                 </div>
                 <button onClick={handleEdit}> ENREGISTRER </button>
@@ -119,5 +119,5 @@ const EditeAnnonce = () => {
     );
 };
 
-export default EditeAnnonce;
+export default EditAnnonce;
 

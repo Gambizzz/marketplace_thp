@@ -20,7 +20,7 @@ end
     description: Faker::Lorem.paragraph(sentence_count: 2),
     superficie: Faker::Number.between(from: 10, to: 600),
     nombre_de_pieces: Faker::Number.between(from: 1, to: 10),
-    terasse_jardin: Faker::Boolean.boolean,
+    terrasse_jardin: Faker::Boolean.boolean,
     city: ['Paris', 'Marseille', 'Toulouse'].sample,
     user_id: User.pluck(:id).sample,
   )

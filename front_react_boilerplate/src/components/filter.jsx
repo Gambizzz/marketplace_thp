@@ -69,8 +69,8 @@ const Filter = ({ filters, setFilters }) => {
       <div>
         <label> Terrasse/Jardin </label>
         <select
-          name="terasse_jardin"
-          value={filters.terasse_jardin}
+          name="terrasse_jardin"
+          value={filters.terrasse_jardin}
           onChange={handleChange}
         >
           <option value=""> Choisir </option>
@@ -78,7 +78,6 @@ const Filter = ({ filters, setFilters }) => {
           <option value="false"> Non </option>
         </select>
       </div>
-      <button type="submit"> Confirmer </button>
     </form>
   );
 };
@@ -91,7 +90,7 @@ Filter.propTypes = {
     superficieMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     nbDePiecesMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     nbDePiecesMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    terasse_jardin: PropTypes.string,
+    terrasse_jardin: PropTypes.string,
   }).isRequired,
   setFilters: PropTypes.func.isRequired,
 };

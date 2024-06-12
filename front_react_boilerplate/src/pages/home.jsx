@@ -5,7 +5,7 @@ import Filter from '../components/filter';
 import Hero from '../components/hero';
 
 const Home = () => {
-  const { city } = useParams(); // Récupère la ville depuis les paramètres de l'URL
+  const { city } = useParams();
   const [annonces, setAnnonces] = useState([]);
   const [filters, setFilters] = useState({
     priceMin: '',
@@ -14,7 +14,7 @@ const Home = () => {
     superficieMax: '',
     nbDePiecesMin: '',
     nbDePiecesMax: '',
-    terasse_jardin: ''
+    terrasse_jardin: ''
   });
 
   useEffect(() => {
@@ -23,12 +23,15 @@ const Home = () => {
 
   const fetchAnnonces = async () => {
     try {
-      const response = await ky.get('http://localhost:3000/cree-annonces');
-      const data = await response.json();
-      setAnnonces(data);
+      const response = await ky.get('http://localhost:3000/cree-annonces').json();
+      setAnnonces(response);
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);
     }
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const filteredAnnonces = annonces.filter((annonce) => {
@@ -38,7 +41,7 @@ const Home = () => {
     const superficieMax = filters.superficieMax ? parseFloat(filters.superficieMax) : Infinity;
     const nbDePiecesMin = filters.nbDePiecesMin ? parseFloat(filters.nbDePiecesMin) : 0;
     const nbDePiecesMax = filters.nbDePiecesMax ? parseFloat(filters.nbDePiecesMax) : Infinity;
-    const isTerrasse = filters.terasse_jardin === '' ? true : (filters.terasse_jardin === 'true' ? annonce.terasse_jardin : !annonce.terasse_jardin);
+    const isTerrasse = filters.terrasse_jardin === '' ? true : (filters.terrasse_jardin === 'true' ? annonce.terrasse_jardin : !annonce.terrasse_jardin);
 
     return (
       annonce.price >= priceMin &&
@@ -48,7 +51,7 @@ const Home = () => {
       annonce.nombre_de_pieces >= nbDePiecesMin &&
       annonce.nombre_de_pieces <= nbDePiecesMax &&
       isTerrasse &&
-      (!city || annonce.city.toLowerCase() === city.toLowerCase()) // Ajoutez cette ligne pour filtrer par ville
+      (!city || annonce.city.toLowerCase() === city.toLowerCase())
     );
   });
 
@@ -56,7 +59,7 @@ const Home = () => {
     <div>
       <div className='home-title'>
         <Hero />
-        <h1>{city ? `Annonces à ${city}` : 'TOUTES NOS ANNONCES'}</h1>
+        <h1>{city ? `Annonces à ${capitalizeFirstLetter(city)}` : 'TOUTES NOS ANNONCES'}</h1>
       </div>
       <div className='index-annonces'>
         <Filter filters={filters} setFilters={setFilters} />
@@ -69,7 +72,7 @@ const Home = () => {
               <p>Prix : {annonce.price} €</p>
               <p>Superficie : {annonce.superficie} m²</p>
               <p>Nombre de pièces : {annonce.nombre_de_pieces}</p>
-              <p>Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
+              <p>Terrasse : {annonce.terrasse_jardin ? "Oui" : "Non"}</p>
               <p>Ville : {annonce.city}</p>
             </div>
           </Link>
@@ -80,6 +83,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 

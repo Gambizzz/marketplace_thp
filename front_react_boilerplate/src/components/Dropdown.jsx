@@ -15,8 +15,8 @@ const Dropdown = ({ items }) => {
 
   return (
     <div>
-      <select onChange={handleChange}>
-        <option value="">NOS VILLES</option>
+      <select onChange={handleChange} className="drop-title">
+        <option value=""> NOS VILLES </option>
         {cityOptions}
       </select>
     </div>
