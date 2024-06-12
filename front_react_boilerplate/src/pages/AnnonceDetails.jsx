@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ky from 'ky';
+import { useAtom } from 'jotai';
+import { userAtom } from '../atoms';
 
 const AnnonceDetails = () => {
   const { id } = useParams();
   const [annonce, setAnnonce] = useState(null);
+  const [user] = useAtom(userAtom);
 
   useEffect(() => {
     const fetchAnnonce = async () => {
@@ -24,15 +27,21 @@ const AnnonceDetails = () => {
   }
 
   return (
-    <div className='annonce-details'>
-      <h1>{annonce.title}</h1>
-      <img src={annonce.image_url} alt={annonce.title} />
-      <p> Description : {annonce.description}</p>
-      <p> Prix : {annonce.price} € </p>
-      <p> Superficie : {annonce.superficie} m2 </p>
-      <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
-      <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
-      <p> <strong> Propriétaire : </strong> {annonce.user.email} </p>
+    <div className='announcement-card'>
+      <div className='annonce-details'>
+        <h1> {annonce.title} </h1>
+        <img src={annonce.image_url} alt={annonce.title} />
+        <p> Description : {annonce.description}</p>
+        <p> Prix : {annonce.price} € </p>
+        <p> Superficie : {annonce.superficie} m2 </p>
+        <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
+        <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
+        {user.isLoggedIn ? (
+          <p> <strong> Propriétaire : </strong> {annonce.user.email} </p>
+          ) : (
+            <div></div>
+          )}
+      </div>
     </div>
   );
 };

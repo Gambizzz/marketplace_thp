@@ -20,6 +20,7 @@ end
     superficie: Faker::Number.between(from: 10, to: 600),
     nombre_de_pieces: Faker::Number.between(from: 1, to: 10),
     terasse_jardin: Faker::Boolean.boolean,
-    user_id: User.pluck(:id).sample
+    user_id: User.pluck(:id).sample,
+    image_url: Faker::LoremFlickr.unique.image
   )
 end

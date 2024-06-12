@@ -13,7 +13,7 @@ const Filter = ({ filters, setFilters }) => {
   return (
     <form onSubmit={handleSubmit} className='form-filters'>
       <div>
-        <label> Prix Min : </label>
+        <label> Prix min. : </label>
         <input
           type="number"
           name="priceMin"
@@ -22,7 +22,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Prix Max : </label>
+        <label> Prix max. : </label>
         <input
           type="number"
           name="priceMax"
@@ -31,7 +31,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Superficie Min : </label>
+        <label> Superficie min. : </label>
         <input
           type="number"
           name="superficieMin"
@@ -40,7 +40,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Superficie Max : </label>
+        <label> Superficie max. : </label>
         <input
           type="number"
           name="superficieMax"
@@ -49,7 +49,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Nombre de pièces Min : </label>
+        <label> Nbr de pièces min. : </label>
         <input
           type="number"
           name="nbDePiecesMin"
@@ -58,7 +58,7 @@ const Filter = ({ filters, setFilters }) => {
         />
       </div>
       <div>
-        <label> Nombre de pièces Max : </label>
+        <label> Nbr de pièces max. : </label>
         <input
           type="number"
           name="nbDePiecesMax"

@@ -17,7 +17,7 @@ const Nav = () => {
     <nav>
         {user.isLoggedIn ? (
             <div className='navbar'>
-                <Link to="/"> DOMUS </Link>
+                <Link to="/" className='logo'> DOMUS </Link>
                 <Link to="/cree-annonces"> CRÉER UNE ANNONCE </Link>
                 <Link to="/mes-annonces"> MON PROFIL </Link>
                 <Dropdown title="VILLES" items={cityItems} />
@@ -25,7 +25,7 @@ const Nav = () => {
             </div>
         ) : (
             <div className='navbar'>
-                <Link to="/"> DOMUS </Link>
+                <Link to="/" className='logo'> DOMUS </Link>
                 <Link to="/signup"> INSCRIPTION </Link>
                 <Link to="/login"> CONNEXION </Link>
                 <Dropdown title="VILLES" items={cityItems} />
