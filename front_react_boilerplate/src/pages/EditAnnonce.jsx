@@ -21,7 +21,7 @@ const EditAnnonce = () => {
     const fetchAnnonce = async () => {
         const token = Cookies.get('token');
         try {
-            const response = await ky.get(`http://localhost:3000/cree-annonces/${id}`, {
+            const response = await ky.get(`http://localhost:3000/create-annonce/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -52,7 +52,7 @@ const EditAnnonce = () => {
         formData.append('annonce[image]', image);
 
         try {
-            await ky.put(`http://localhost:3000/cree-annonces/${id}`, {
+            await ky.put(`http://localhost:3000/create-annonce/${id}`, {
                 body: formData,
                 headers: {
                     Authorization: `Bearer ${token}`,

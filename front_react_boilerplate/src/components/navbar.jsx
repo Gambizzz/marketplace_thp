@@ -20,8 +20,8 @@ const Nav = () => {
       {user.isLoggedIn ? (
         <div className='navbar'>
           <Link to="/" className='logo'> DOMUS </Link>
-          <Link to="/cree-annonces"> CRÉER UNE ANNONCE </Link>
-          <Link to="/mes-annonces"> MON PROFIL </Link>
+          <Link to="/create-annonce"> CRÉER UNE ANNONCE </Link>
+          <Link to="/user-annonces"> MON PROFIL </Link>
           <Dropdown title="VILLES" items={cities} />
           <Link to="/logout"> DÉCONNEXION </Link>
         </div>

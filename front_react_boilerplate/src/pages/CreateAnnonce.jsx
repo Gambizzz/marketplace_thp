@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ky from 'ky';
 import Cookies from 'js-cookie';
 
-const UserCreatAnnonce = () => {
+const CreateAnnonce = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
@@ -34,7 +34,7 @@ const UserCreatAnnonce = () => {
     const token = Cookies.get('token'); 
 
     try {
-      const response = await ky.post('http://localhost:3000/cree-annonces', {
+      const response = await ky.post('http://localhost:3000/create-annonce', {
         method: 'POST',
         body: formData,
         headers: {
@@ -110,6 +110,6 @@ const UserCreatAnnonce = () => {
   );
 };
 
-export default UserCreatAnnonce;
+export default CreateAnnonce;
 
 

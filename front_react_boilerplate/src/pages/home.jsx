@@ -23,7 +23,7 @@ const Home = () => {
 
   const fetchAnnonces = async () => {
     try {
-      const response = await ky.get('http://localhost:3000/cree-annonces').json();
+      const response = await ky.get('http://localhost:3000/create-annonce').json();
       setAnnonces(response);
     } catch (error) {
       console.error('Erreur lors de la récupération des annonces : ', error);

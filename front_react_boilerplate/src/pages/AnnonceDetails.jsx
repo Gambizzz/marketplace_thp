@@ -12,7 +12,7 @@ const AnnonceDetails = () => {
   useEffect(() => {
     const fetchAnnonce = async () => {
       try {
-        const response = await ky.get(`http://localhost:3000/cree-annonces/${id}`);
+        const response = await ky.get(`http://localhost:3000/create-annonce/${id}`);
         const data = await response.json();
         setAnnonce(data);
       } catch (error) {
