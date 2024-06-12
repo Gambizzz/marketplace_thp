@@ -54,6 +54,7 @@ const UserAnnonce = () => {
                   <p> Superficie : {annonce.superficie} m2 </p>
                   <p> Nombre de pièces : {annonce.nombre_de_pieces} </p>
                   <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
+                  <p> Ville : {annonce.city} </p>
                   <Link to={`/edite-annonce/${annonce.id}`}> <button className='link-edit'> Éditer </button> </Link>
                   <button onClick={() => handleDelete(annonce.id)} className='link-delete'> Supprimer </button>
               </div>

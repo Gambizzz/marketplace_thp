@@ -7,7 +7,7 @@ class CreateAnnonces < ActiveRecord::Migration[7.1]
       t.integer :superficie
       t.integer :nombre_de_pieces
       t.boolean :terasse_jardin
-
+      
       t.timestamps
     end
   end

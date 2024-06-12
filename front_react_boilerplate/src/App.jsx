@@ -48,7 +48,7 @@ function App() {
         <Route path="/mes-annonces" element={<UserAnnonce />} />
         <Route path="/edite-annonce/:id" element={<EditeAnnonce />} />
         <Route path="/annonce/:id" element={<AnnonceDetails /> } />
-        <Route path="/ville/:city" element={<Nav />} />
+        <Route path="/:city" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

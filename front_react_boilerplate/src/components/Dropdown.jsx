@@ -1,43 +1,31 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Dropdown = ({ title, items }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+const Dropdown = ({ items }) => {
+  const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const handleChange = (event) => {
+    const selectedCity = event.target.value;
+    navigate(`/${selectedCity}`);
   };
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setDropdownOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const cityOptions = items.map((city, index) => (
+    <option key={index} value={city.link}>{city.label}</option>
+  ));
 
   return (
-    <div className={`dropdown ${dropdownOpen ? 'open' : ''}`} ref={dropdownRef}>
-      <span onClick={toggleDropdown} className='btn-dropdown'>
-        {title}
-      </span>
-      <div className="menu-drop">
-        {items.map((item, index) => (
-          <div key={index}>
-            <Link to={item.link}> {item.label} </Link>
-          </div>
-        ))}
-      </div>
+    <div>
+      <select onChange={handleChange}>
+        <option value="">NOS VILLES</option>
+        {cityOptions}
+      </select>
     </div>
   );
 };
 
 export default Dropdown;
+
+
+
+
 

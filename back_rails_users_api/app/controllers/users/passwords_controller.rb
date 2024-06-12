@@ -4,6 +4,7 @@ class Users::PasswordsController < Devise::PasswordsController
   def create
     self.resource = resource_class.send_reset_password_instructions(resource_params)
     if successfully_sent?(resource)
+      @user = resource # Assurez-vous d'assigner correctement @user
       render json: { message: 'Un email de réinitialisation de mot de passe a été envoyé.' }, status: :ok
     else
       render json: { error: resource.errors.full_messages }, status: :unprocessable_entity

@@ -125,6 +125,10 @@ body {
 
 
 /* START HOME */
+.home-title {
+  color: $title-color;
+}
+
 .annonce-details {
   text-decoration: none;
   color: inherit;
@@ -139,7 +143,6 @@ body {
   transition: transform 0.2s;
   background-color: $bg-color;
   max-width: 300px;
-  
 }
 
 .annonce-card:hover {
@@ -160,7 +163,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 
-  h1, h2 {
+  h2 {
   color: $title-color;
   }
 
@@ -314,6 +317,35 @@ body {
 }
 /* END LOGIN/REGISTER FORM */
 
+
+
+/* START FORGOT PASSWORD */
+.forgot-pass {
+  margin-top: 6%;
+
+  h1 {
+    color: $title-color;
+  }
+}
+
+.forgot-form {
+  margin-top: 6%;
+  color: $font-color;
+
+  input {
+    color: $title-color;
+  }
+}
+
+.btn-forgot {
+  margin-left: 2%;
+  border: none;
+  background-color: transparent;
+  color: $title-color;
+  font-size: medium;
+  cursor: pointer;
+}
+/* END FORGOT PASSWORD */
 
 
 /* START ANNONCE DETAILS */

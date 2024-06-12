@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ky from 'ky'; 
 import Filter from '../components/filter';
 import Hero from '../components/hero';
 
 const Home = () => {
+  const { city } = useParams(); // Récupère la ville depuis les paramètres de l'URL
   const [annonces, setAnnonces] = useState([]);
   const [filters, setFilters] = useState({
     priceMin: '',
@@ -18,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchAnnonces();
-  }, []);
+  }, [city]);
 
   const fetchAnnonces = async () => {
     try {
@@ -30,7 +31,6 @@ const Home = () => {
     }
   };
 
-  // FILTRE
   const filteredAnnonces = annonces.filter((annonce) => {
     const priceMin = filters.priceMin ? parseFloat(filters.priceMin) : 0;
     const priceMax = filters.priceMax ? parseFloat(filters.priceMax) : Infinity;
@@ -47,31 +47,39 @@ const Home = () => {
       annonce.superficie <= superficieMax &&
       annonce.nombre_de_pieces >= nbDePiecesMin &&
       annonce.nombre_de_pieces <= nbDePiecesMax &&
-      isTerrasse
+      isTerrasse &&
+      (!city || annonce.city.toLowerCase() === city.toLowerCase()) // Ajoutez cette ligne pour filtrer par ville
     );
   });
 
   return (
-    <div className='index-annonces'>
-      <Hero />
-        <h1> TOUTES NOS ANNONCES </h1>
-        <Filter filters={filters} setFilters={setFilters} />
-          {filteredAnnonces.map((annonce) => (
-              <Link key={annonce.id} to={`/annonce/${annonce.id}`} className="annonce-details">
-              <div className="annonce-card">
-                <h2>{annonce.title}</h2>
-                <img src={annonce.image_url} alt={annonce.title} className="annonce-image" />
-                <p>Description : {annonce.description}</p>
-                <p>Prix : {annonce.price} €</p>
-                <p>Superficie : {annonce.superficie} m²</p>
-                <p>Nombre de pièces : {annonce.nombre_de_pieces}</p>
-                <p>Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
-              </div>
-            </Link>
-          ))}
+    <div>
+      <div className='home-title'>
+        <Hero />
+        <h1>{city ? `Annonces à ${city}` : 'TOUTES NOS ANNONCES'}</h1>
       </div>
+      <div className='index-annonces'>
+        <Filter filters={filters} setFilters={setFilters} />
+        {filteredAnnonces.map((annonce) => (
+          <Link key={annonce.id} to={`/annonce/${annonce.id}`} className="annonce-details">
+            <div className="annonce-card">
+              <h2>{annonce.title}</h2>
+              <img src={annonce.image_url} alt={annonce.title} className="annonce-image" />
+              <p>Description : {annonce.description}</p>
+              <p>Prix : {annonce.price} €</p>
+              <p>Superficie : {annonce.superficie} m²</p>
+              <p>Nombre de pièces : {annonce.nombre_de_pieces}</p>
+              <p>Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"}</p>
+              <p>Ville : {annonce.city}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 };
 
 export default Home;
+
+
 

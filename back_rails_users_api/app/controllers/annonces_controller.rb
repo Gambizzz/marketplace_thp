@@ -61,7 +61,7 @@ class AnnoncesController < ApplicationController
   end
 
   def annonce_params
-    params.require(:annonce).permit(:title, :price, :description, :superficie, :nombre_de_pieces, :terasse_jardin, :image)
+    params.require(:annonce).permit(:title, :price, :description, :superficie, :nombre_de_pieces, :terasse_jardin, :image, :city)
   end
 
   def authorize_user!

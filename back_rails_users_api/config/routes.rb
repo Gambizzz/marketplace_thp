@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     passwords: "users/passwords"
   }
 
-  put "/users/password", to: "users/passwords#update"
+  
   get "mes-annonces", to: "annonces#mes_annonces"
   get "up" => "rails/health#show", as: :rails_health_check
 
