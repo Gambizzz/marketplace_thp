@@ -8,7 +8,7 @@ const CreateAnnonce = () => {
   const [description, setDescription] = useState('');
   const [superficie, setSuperficie] = useState('');
   const [nombre_de_pieces, setNombre_de_pieces] = useState('');
-  const [terrasse_jardin, setterrasse_jardin] = useState(null);
+  const [terrasse_jardin, setTerrasse_jardin] = useState(null);
   const [image, setImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [city, setCity] = useState('');
@@ -56,7 +56,7 @@ const CreateAnnonce = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='create-form'>
+    <form onSubmit={handleSubmit} className='create-form' id='new_annonce'>
       <h1> CRÉER UNE ANNONCE </h1>
       <div>
         <label> Image : </label>
@@ -89,10 +89,10 @@ const CreateAnnonce = () => {
         <label> Terrasse/Jardin : </label>
         <div>
           <input
-            type="radio" id="terrasse_jardin_oui" name="terrasse_jardin" value={true} checked={terrasse_jardin === true} onChange={() => setterrasse_jardin(true)} />
+            type="radio" id="terrasse_jardin_oui" name="terrasse_jardin" value={true} checked={terrasse_jardin === true} onChange={() => setTerrasse_jardin(true)} />
           <label htmlFor="terrasse_jardin_oui"> Oui </label>
           <input
-            type="radio" id="terrasse_jardin_non" name="terrasse_jardin" value={false} checked={terrasse_jardin === false} onChange={() => setterrasse_jardin(false)} />
+            type="radio" id="terrasse_jardin_non" name="terrasse_jardin" value={false} checked={terrasse_jardin === false} onChange={() => setTerrasse_jardin(false)} />
           <label htmlFor="terrasse_jardin_non"> Non </label>
         </div>
       </div>
