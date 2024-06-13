@@ -44,7 +44,7 @@ function Login() {
 
   return (
     <div className='login-form'>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} id='new_user_session'>
         <h1> SE CONNECTER </h1>
         {error && <p>{error}</p>}
         <div>

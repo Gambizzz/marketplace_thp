@@ -48,7 +48,7 @@ function SignUp() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='login-form'>
+    <form onSubmit={handleSubmit} className='login-form' id='new_user'>
       <h1> S'INSCRIRE </h1>
       {error && <p>{error}</p>}
       <div>
