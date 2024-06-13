@@ -49,7 +49,10 @@ const EditAnnonce = () => {
         formData.append('annonce[superficie]', superficie);
         formData.append('annonce[nombre_de_pieces]', nombre_de_pieces);
         formData.append('annonce[terrasse_jardin]', terrasse_jardin);
-        formData.append('annonce[image]', image);
+
+        if (image && image !== previewImage) {
+          formData.append('annonce[image]', image);
+        }
 
         try {
             await ky.put(`http://localhost:3000/create-annonce/${id}`, {

@@ -30,7 +30,14 @@ class AnnoncesController < ApplicationController
 
   def update
     @annonce = Annonce.find(params[:id])
-    if @annonce.update(annonce_params)
+
+    # mise à jour de l'image uniquement si une nouvelle image est fournie
+    if annonce_params[:image].present?
+      @annonce.image.attach(annonce_params[:image])
+    end
+
+    # Mise à jour des autres attributs
+    if @annonce.update(annonce_params.except(:image))
       render json: @annonce.as_json.merge(image_url: url_for(@annonce.image))
     else
       render json: @annonce.errors, status: :unprocessable_entity
