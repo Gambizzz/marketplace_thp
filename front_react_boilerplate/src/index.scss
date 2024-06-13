@@ -8,11 +8,14 @@ $title-color: #00CC99;
 $font-color: #8872E9;
 $logo-font: 'Spicy Rice', serif;
 $font: 'Raleway', sans-serif;
+$margin: 6%;
+
 
 body {
   background-color: $bg-color;
   font-family: $font;
 }
+
 
 /* START NAVBAR */
 .navbar {
@@ -32,57 +35,35 @@ body {
   font-style: normal;
   font-size: 200%;
 }
+
+@media (max-width: 1024px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin-bottom: 10px;
+  }
+}
 /* END NAVBAR */
 
 
 
 /* START DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.btn-dropdown {
+.drop-title {
   color: $font-color;
-  cursor: pointer;
-}
-
-.menu-drop {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  width: 100px;
-}
-
-.menu-drop {
-  padding: 20%;
-  margin: 6%;
-}
-
-.menu-drop a {
-  text-decoration: none;
-  color: $font-color;
-  display: block;
-}
-
-.menu-drop a:hover {
-  color: $title-color;
-  background-color: transparent;
-}
-
-.dropdown.open .menu-drop {
-  display: block;
+  border: none;
+  font-size: medium;
 }
 /* END DROPDOWN */
+
 
 
 /* START HERO */
 .hero {
   position: relative;
-  margin-top: 6%;
+  margin-top: $margin;
   margin-bottom: 6%;
   text-align: center;
 }
@@ -101,6 +82,7 @@ body {
   margin: 0;
   padding: 0;
   color: $bg-color; /* Utiliser la variable pour la couleur du texte */
+  max-width: 80%; /* Ajuste la largeur maximale du texte */
 }
 
 .hero-text p {
@@ -120,11 +102,25 @@ body {
 .domus {
   font-family: $logo-font;
 }
+
+@media (max-width: 625px) {
+   p {
+    display: none;
+  }
+
+  .domus {
+    display: inline;
+  }
+}
 /* END HERO */
 
 
 
 /* START HOME */
+.home-title {
+  color: $title-color;
+}
+
 .annonce-details {
   text-decoration: none;
   color: inherit;
@@ -139,7 +135,6 @@ body {
   transition: transform 0.2s;
   background-color: $bg-color;
   max-width: 300px;
-  
 }
 
 .annonce-card:hover {
@@ -154,13 +149,13 @@ body {
 }
 
 .index-annonces {
-  margin-top: 6%;
+  margin-top: $margin;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  h1, h2 {
+  h2 {
   color: $title-color;
   }
 
@@ -180,21 +175,35 @@ body {
   flex-direction: row;
   align-items: center;
   color: $font-color;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
-  div {
-    margin-left: 2%;
-  }
+}
 
-  button {
-    margin-left: 2%;
-    border: none;
-    background-color: transparent;
-    color: $title-color;
-    cursor: pointer;
-  }
+.form-filters > div {
+  margin-left: O;
+  margin-bottom: 2%;
+  margin-right: 1%;
+}
 
-  input, select {
-    color: $title-color;
+.form-filters button {
+  margin-left: 2%;
+  border: none;
+  background-color: transparent;
+  color: $title-color;
+  cursor: pointer;
+}
+
+.form-filters input,
+.form-filters select {
+  color: $title-color;
+}
+
+@media (max-width: 1024px) {
+  .form-filters > div {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-bottom: 2%; 
   }
 }
 /* END HOME */
@@ -204,7 +213,7 @@ body {
 /* START USER PROFILE */
 .profil-title {
   color: $title-color;
-  margin-top: 6%;
+  margin-top: $margin;
 }
 
 .link-edit {
@@ -232,6 +241,9 @@ body {
   color: $font-color;
   display: flex;
   flex-direction: column;
+  border: 1px solid $font-color;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   h1 {
     color: $title-color;
@@ -246,6 +258,10 @@ body {
     margin-bottom: 2%;
   }
 
+  input, textarea {
+    color: $title-color;
+  }
+
   button {
     border: none;
     background-color: transparent;
@@ -254,13 +270,21 @@ body {
     cursor: pointer;
   }
 }
+
+.btn-create {
+  margin-bottom: 2%;
+}
+
+.drop-create {
+  color: $title-color;
+}
 /* END CREATE/EDIT ANNONCE */
 
 
 
 /* START LOGOUT FORM */
 .logout-form {
-  margin-top: 6%;
+  margin-top: $margin;
 
   h1 {
     color: $title-color;
@@ -281,8 +305,12 @@ body {
 
 /* START LOGIN/REGISTER FORM */
 .login-form {
-  margin-top: 6%;
+  margin-top: $margin;
   color: $font-color;
+  border: 1px solid $font-color;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding-bottom: 2%;
 
   h1 {
     color: $title-color;
@@ -313,6 +341,78 @@ body {
   cursor: pointer;
 }
 /* END LOGIN/REGISTER FORM */
+
+
+
+/* START FORGOT PASSWORD */
+.forgot-pass {
+  margin-top: $margin;
+  border: 1px solid $font-color;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    color: $title-color;
+  }
+}
+
+.forgot-form {
+  margin-top: $margin;
+  color: $font-color;
+  margin-bottom: 3%;
+
+  input {
+    color: $title-color;
+  }
+}
+
+.btn-forgot {
+  margin-left: 2%;
+  border: none;
+  background-color: transparent;
+  color: $title-color;
+  font-size: medium;
+  cursor: pointer;
+}
+/* END FORGOT PASSWORD */
+
+
+
+/* START RESET PASSWORD */
+.reset-title {
+  color: $title-color;
+  margin-top: $margin;
+  margin-bottom: 4%;
+}
+
+.reset-form {
+  color: $font-color;
+  border: 1px solid $font-color;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 6%;
+  padding-top: 0;
+  padding-bottom: 2%;
+
+  input {
+    color: $title-color;
+    margin-left: 1%;
+  }
+
+  div {
+    margin-bottom: 3%;
+  }
+}
+
+.btn-reset {
+  margin-bottom: 2%;
+  border: none;
+  background-color: transparent;
+  color: $title-color;
+  font-size: medium;
+  cursor: pointer;
+}
+/* END RESET PASSWORD */
 
 
 
@@ -350,6 +450,25 @@ body {
   color: $title-color;
 }
 /* END ANNONCE DETAILS */
+
+
+
+/* START FOOTER */
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  h1 {
+    color: $font-color;
+    font-family: $logo-font;
+    font-size: 300%;
+  }
+
+  p {
+    color: $title-color;
+  }
+}
 
 
 

@@ -3,7 +3,7 @@ import ky from 'ky';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
-const UserAnnonce = () => {
+const UserAnnonces = () => {
     const [annonces, setAnnonces] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const UserAnnonce = () => {
     const fetchAnnonces = async () => {
         const token = Cookies.get('token');
         try {
-            const response = await ky.get('http://localhost:3000/mes-annonces', {
+            const response = await ky.get('http://localhost:3000/user-annonces', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -27,7 +27,7 @@ const UserAnnonce = () => {
     const handleDelete = async (id) => {
         const token = Cookies.get('token');
         try {
-            await ky.delete(`http://localhost:3000/cree-annonces/${id}`, {
+            await ky.delete(`http://localhost:3000/create-annonce/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -53,8 +53,9 @@ const UserAnnonce = () => {
                   <p> Description : {annonce.description} </p>
                   <p> Superficie : {annonce.superficie} m2 </p>
                   <p> Nombre de pièces : {annonce.nombre_de_pieces} </p>
-                  <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
-                  <Link to={`/edite-annonce/${annonce.id}`}> <button className='link-edit'> Éditer </button> </Link>
+                  <p> Terrasse : {annonce.terrasse_jardin ? "Oui" : "Non"} </p>
+                  <p> Ville : {annonce.city} </p>
+                  <Link to={`/edit-annonce/${annonce.id}`}> <button className='link-edit'> Éditer </button> </Link>
                   <button onClick={() => handleDelete(annonce.id)} className='link-delete'> Supprimer </button>
               </div>
           ))}
@@ -63,4 +64,4 @@ const UserAnnonce = () => {
     );
 };
 
-export default UserAnnonce;
+export default UserAnnonces;

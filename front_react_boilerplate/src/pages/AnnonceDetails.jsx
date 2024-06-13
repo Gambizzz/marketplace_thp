@@ -12,7 +12,7 @@ const AnnonceDetails = () => {
   useEffect(() => {
     const fetchAnnonce = async () => {
       try {
-        const response = await ky.get(`http://localhost:3000/cree-annonces/${id}`);
+        const response = await ky.get(`http://localhost:3000/create-annonce/${id}`);
         const data = await response.json();
         setAnnonce(data);
       } catch (error) {
@@ -35,7 +35,8 @@ const AnnonceDetails = () => {
         <p> Prix : {annonce.price} € </p>
         <p> Superficie : {annonce.superficie} m2 </p>
         <p> Nombre de pièces : {annonce.nombre_de_pieces}</p>
-        <p> Terrasse : {annonce.terasse_jardin ? "Oui" : "Non"} </p>
+        <p> Terrasse : {annonce.terrasse_jardin ? "Oui" : "Non"} </p>
+        <p> Ville : {annonce.city} </p>
         {user.isLoggedIn ? (
           <p> <strong> Propriétaire : </strong> {annonce.user.email} </p>
           ) : (

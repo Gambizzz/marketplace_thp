@@ -66,30 +66,34 @@ const ResetPassword = () => {
   }
 
   return (
-    <div>
-      <h2>Réinitialisation du mot de passe</h2>
+    <div className='reset-form'>
+      <h1 className='reset-title'> RÉINITIALISATION DU MOT DE PASSE </h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="password">Nouveau mot de passe:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <label htmlFor="password_confirmation">Confirmer le nouveau mot de passe:</label>
-        <input
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          required
-        />
-        <button type="submit">Réinitialiser le mot de passe</button>
+        <div>
+          <label htmlFor="password"> Nouveau mot de passe : </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password_confirmation">Confirmer le nouveau mot de passe:</label>
+          <input
+            type="password"
+            id="password_confirmation"
+            value={passwordConfirmation}
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className='btn-reset'> RÉINITIALISATION </button>
       </form>
-      <p>{message}</p>
+      <p> {message} </p>
       <p>
-        <Link to="/signup">S'inscrire</Link> | <Link to="/login">Se connecter</Link> | <Link to="/">Accueil</Link>
+        <Link to="/signup" className='links'> S'inscrire </Link> | <Link to="/login" className='links'> Se connecter </Link> | <Link to="/" className='links'> Accueil </Link>
       </p>
     </div>
   );

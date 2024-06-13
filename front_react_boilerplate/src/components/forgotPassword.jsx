@@ -36,10 +36,10 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
-      <h2>Mot de passe oublié</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+    <div className='forgot-pass'>
+      <h1> MOT DE PASSE OUBLIÉ </h1>
+      <form onSubmit={handleSubmit} className='forgot-form'>
+        <label htmlFor="email"> Email : </label>
         <input
           type="email"
           id="email"
@@ -48,7 +48,7 @@ const ForgotPassword = () => {
           required
         />
 
-        <button type="submit">Envoyer l'email de réinitialisation</button>
+        <button type="submit" className='btn-forgot'> Envoyer l'email de réinitialisation </button>
 
       </form>
       <p>{message}</p>
